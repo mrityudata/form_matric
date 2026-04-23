@@ -1,0 +1,69 @@
+{
+  "entities": {
+    "ContactMessage": {
+      "title": "Contact Message",
+      "description": "Information sent via the contact form",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Sender's name" },
+        "email": { "type": "string", "format": "email", "description": "Sender's email address" },
+        "subject": { "type": "string", "description": "Message subject" },
+        "message": { "type": "string", "description": "Full message content" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Timestamp of message sending" }
+      },
+      "required": ["name", "email", "message", "createdAt"]
+    },
+    "TeamMember": {
+      "title": "Team Member",
+      "description": "Information about a team member",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "role": { "type": "string" },
+        "photoUrl": { "type": "string" },
+        "bio": { "type": "string" }
+      },
+      "required": ["name", "role"]
+    },
+    "Client": {
+      "title": "Client",
+      "description": "Brand/Client worked with",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "logoUrl": { "type": "string" }
+      },
+      "required": ["name"]
+    },
+    "Project": {
+      "title": "Project",
+      "description": "Portfolio work",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "category": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "description": { "type": "string" }
+      },
+      "required": ["title", "imageUrl"]
+    }
+  },
+  "firestore": {
+    "contact_messages": {
+      "schema": "ContactMessage",
+      "description": "Collection of messages from the contact form"
+    },
+    "team": {
+      "schema": "TeamMember",
+      "description": "Collection of team members"
+    },
+    "clients": {
+      "schema": "Client",
+      "description": "Collection of client logos and info"
+    },
+    "projects": {
+      "schema": "Project",
+      "description": "Portfolio pieces"
+    }
+  }
+}
