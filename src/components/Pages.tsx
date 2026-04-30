@@ -25,11 +25,11 @@ export function OurCorePage() {
     >
       <Section title="Our Core">
         <div className="space-y-12 mb-20">
-          <h1 className="text-6xl md:text-8xl font-display font-light tracking-tighter uppercase leading-none">
+          <h1 className="text-[22px] leading-relaxed font-light text-white tracking-tight uppercase">
             <strong className="font-bold">THE MINDS</strong> <br/>
             <span className="text-studio-text-s italic font-light">BEHIND THE CRAFT.</span>
           </h1>
-          <p className="max-w-2xl text-xl font-light opacity-80 leading-relaxed font-display">
+          <p className="max-w-2xl text-[16px] font-extralight text-white/80 leading-relaxed font-display">
             A diverse collective of digital artists, engineers, and strategists united by a singular obsession: creating flawless digital experiences.
           </p>
         </div>
@@ -82,7 +82,7 @@ export function ServicesPage() {
     >
       <Section title="Expertise">
         <div className="space-y-12 mb-20">
-          <h1 className="text-6xl md:text-8xl font-display font-light tracking-tighter uppercase leading-none">
+          <h1 className="text-[22px] leading-relaxed font-light text-white tracking-tight uppercase">
             <strong className="font-bold">WHAT WE</strong> <br/>
             <span className="text-studio-text-s italic font-light">BRING TO THE TABLE.</span>
           </h1>
@@ -101,8 +101,8 @@ export function ServicesPage() {
               <div className="mb-8 text-studio-text-s group-hover:text-white transition-colors">
                 {service.icon}
               </div>
-              <h3 className="text-3xl font-display font-bold mb-4">{service.title}</h3>
-              <p className="text-sm font-light leading-relaxed text-studio-text-s group-hover:text-white/80 transition-colors">
+              <h3 className="text-[22px] font-display font-bold mb-4">{service.title}</h3>
+              <p className="text-[16px] font-extralight leading-relaxed text-studio-text-s group-hover:text-white/80 transition-colors">
                 {service.description}
               </p>
             </motion.div>
@@ -131,7 +131,7 @@ export function StackPage() {
     >
       <Section title="Arsenal">
         <div className="space-y-12 mb-20">
-          <h1 className="text-6xl md:text-8xl font-display font-light tracking-tighter uppercase leading-none">
+          <h1 className="text-[22px] leading-relaxed font-light text-white tracking-tight uppercase">
             <strong className="font-bold">THE TOOLS</strong> <br/>
             <span className="text-studio-text-s italic font-light">WE FORGE WITH.</span>
           </h1>
@@ -139,16 +139,23 @@ export function StackPage() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-16">
           {stack.map((item, idx) => (
-            <div key={item.category} className="space-y-6">
+            <motion.div
+              key={item.category}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.8, delay: idx * 0.1, ease: "easeOut" }}
+              className="space-y-6"
+            >
               <h3 className="text-[10px] uppercase tracking-[0.3em] font-bold text-studio-text-s border-b border-studio-border pb-4">{item.category}</h3>
               <ul className="space-y-4">
                 {item.tools.map(tool => (
-                  <li key={tool} className="text-2xl font-display font-light tracking-tight hover:translate-x-2 transition-transform cursor-default">
+                  <li key={tool} className="text-[16px] font-display font-extralight tracking-tight hover:translate-x-2 transition-transform cursor-default">
                     {tool}
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           ))}
         </div>
       </Section>
@@ -166,9 +173,15 @@ export function TermsPage() {
       className="pb-24 pt-20"
     >
       <Section title="Legal">
-        <div className="max-w-3xl space-y-8">
-          <h1 className="text-4xl md:text-6xl font-display font-bold tracking-tighter uppercase">Terms & Conditions</h1>
-          <div className="space-y-6 text-sm font-light leading-relaxed text-studio-text-s">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="max-w-3xl space-y-8"
+        >
+          <h1 className="text-[22px] font-display font-bold tracking-tighter uppercase">Terms & Conditions</h1>
+          <div className="space-y-6 text-[16px] font-extralight leading-relaxed text-studio-text-s">
             <p>Last updated: April 2026</p>
             <h2 className="text-xl font-medium text-white mt-8 mb-4">1. Acceptance of Terms</h2>
             <p>By accessing and using ELEVATESTUDIO.COM, you accept and agree to be bound by the terms and provision of this agreement.</p>
@@ -178,7 +191,7 @@ export function TermsPage() {
             <p>Permission is granted to temporarily download one copy of the materials (information or software) on ELEVATESTUDIO's website for personal, non-commercial transitory viewing only.</p>
             {/* Add more placeholder content as needed */}
           </div>
-        </div>
+        </motion.div>
       </Section>
     </motion.div>
   );
@@ -194,9 +207,15 @@ export function PrivacyPage() {
       className="pb-24 pt-20"
     >
       <Section title="Legal">
-        <div className="max-w-3xl space-y-8">
-          <h1 className="text-4xl md:text-6xl font-display font-bold tracking-tighter uppercase">Privacy Policy</h1>
-          <div className="space-y-6 text-sm font-light leading-relaxed text-studio-text-s">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="max-w-3xl space-y-8"
+        >
+          <h1 className="text-[22px] font-display font-bold tracking-tighter uppercase">Privacy Policy</h1>
+          <div className="space-y-6 text-[16px] font-extralight leading-relaxed text-studio-text-s">
             <p>Last updated: April 2026</p>
             <h2 className="text-xl font-medium text-white mt-8 mb-4">1. Information We Collect</h2>
             <p>We collect information to provide better services to all our users. We may collect personal information such as your name, email address, and company details when you fill out our contact form.</p>
@@ -205,7 +224,7 @@ export function PrivacyPage() {
             <h2 className="text-xl font-medium text-white mt-8 mb-4">3. Information Sharing</h2>
             <p>We do not share personal information with companies, organizations and individuals outside of ELEVATESTUDIO unless one of the following circumstances applies: with your consent, for legal reasons, or for external processing.</p>
           </div>
-        </div>
+        </motion.div>
       </Section>
     </motion.div>
   );

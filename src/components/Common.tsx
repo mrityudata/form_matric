@@ -49,24 +49,10 @@ export function Navbar() {
 export function Footer() {
   return (
     <footer className="min-h-[100px] border-t border-studio-border flex flex-wrap items-center px-10 gap-x-12 gap-y-6 py-6 lg:py-0 whitespace-nowrap">
-      <span className="text-sm font-semibold text-studio-text-s shrink-0">Selected Clients</span>
-      <div className="flex items-center gap-8 md:gap-12 text-base font-semibold text-studio-text-s overflow-x-auto">
-        <span>Panasonic</span>
-        <span>Nike</span>
-        <span>Apple Inc.</span>
-        <span>Sony Music</span>
-        <span>Tesla</span>
-      </div>
       <div className="flex-1" />
       <div className="flex flex-wrap items-center gap-6 text-sm font-medium">
         <Link to="/terms" target="_blank" className="hover:text-white text-studio-text-s transition-colors">Terms & Conditions</Link>
         <Link to="/privacy" target="_blank" className="hover:text-white text-studio-text-s transition-colors">Privacy Policy</Link>
-      </div>
-      <div className="flex items-center gap-6">
-        <SocialIcon icon={<Instagram size={16} />} href="#" />
-        <SocialIcon icon={<Twitter size={16} />} href="#" />
-        <SocialIcon icon={<Linkedin size={16} />} href="#" />
-        <SocialIcon icon={<Github size={16} />} href="#" />
       </div>
       <div className="text-sm text-studio-text-s w-full lg:w-auto text-center mt-4 lg:mt-0 lg:block">
         © 2026 ElevateStudio / Pushing Potential
@@ -75,7 +61,7 @@ export function Footer() {
   );
 }
 
-function SocialIcon({ icon, href }: { icon: React.ReactNode; href: string }) {
+export function SocialIcon({ icon, href }: { icon: React.ReactNode; href: string }) {
   return (
     <a
       href={href}

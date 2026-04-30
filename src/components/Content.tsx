@@ -1,10 +1,11 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useInView } from 'motion/react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Play, Pause, ExternalLink } from 'lucide-react';
+import { ArrowLeft, Play, Pause, ExternalLink, Instagram, Twitter, Linkedin, Github } from 'lucide-react';
 import { db } from '../lib/firebase';
 import { collection, addDoc, getDocs, query, orderBy, serverTimestamp, doc, onSnapshot } from 'firebase/firestore';
 import { cn } from '../lib/utils';
+import { SocialIcon } from './Common';
 
 export function Section({ children, className, title }: { children: React.ReactNode; className?: string; title?: string }) {
   return (
@@ -43,8 +44,8 @@ export function Hero() {
       </div>
 
       {/* Statement text */}
-      <div className="px-6 md:px-12 pt-6 pb-16 md:pt-14 md:pb-24 max-w-4xl">
-        <h1 className="text-[25px] leading-relaxed font-light text-white tracking-tight">
+      <div className="px-6 md:px-12 pt-6 pb-16 md:pt-14 md:pb-24 max-w-2xl">
+        <h1 className="text-[22px] leading-relaxed font-light text-white tracking-tight">
           <strong className="font-bold">We are a dynamic</strong> and forward-thinking creative team dedicated to transforming ideas into captivating visual experiences.
         </h1>
       </div>
@@ -226,48 +227,48 @@ export function useProjects() {
 
 export function Info() {
   return (
-    <div className="w-full min-h-screen relative pt-32 pb-24 px-6 md:px-12 flex items-center">
-      {/* Background abstract overlay to match the original style but in dark mode */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img src="https://picsum.photos/seed/info/1920/1080" className="w-full h-full object-cover blur-3xl opacity-20 saturate-150" alt="Info background" />
-      </div>
-
-      <div className="relative z-10 w-full max-w-4xl space-y-24">
-        <h2 className="text-[25px] font-light text-white leading-relaxed">
-          <span className="opacity-50 mr-2">→</span>
+    <div className="w-full min-h-screen pt-40 pb-32 px-6 md:px-12 flex items-center bg-studio-dark">
+      <div className="w-full max-w-5xl space-y-16 md:space-y-24">
+        <h2 className="text-[22px] font-light text-white leading-relaxed">
           <strong className="font-bold">We are a dynamic and forward-thinking creative team</strong> dedicated to transforming ideas into captivating visual experiences. With a passion for design and a commitment to excellence, we craft unique and impactful solutions that resonate with our clients and their audiences.
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-4 text-white/80 font-light text-[16px]">
-          <div className="md:col-span-1">
-            <span className="opacity-50 mr-2">{'>'}</span>Clients
+        <div className="space-y-8 md:space-y-12">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-12 border-t border-white/10 pt-8 md:pt-12">
+            <div className="md:col-span-3 text-[10px] uppercase tracking-[0.2em] font-bold text-white/40 pt-1">
+              Clients
+            </div>
+            <div className="md:col-span-9 text-[16px] font-extralight text-white/80 leading-relaxed">
+              Huawei, Nike, Maxon, Louis Vuitton, Torry Burch, Vollebak, Adidas, Samsung, Oppo, Tiffany, Adobe
+            </div>
           </div>
-          <div className="md:col-span-3 leading-relaxed">
-            Huawei, Nike, Maxon, Louis Vuitton, Torry Burch, Vollebak, Adidas, Samsung, Oppo, Tiffany, Adobe
-          </div>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-4 text-white/80 font-light text-[16px]">
-          <div className="md:col-span-1">
-            <span className="opacity-50 mr-2">{'>'}</span>Contact
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-12 border-t border-white/10 pt-8 md:pt-12">
+            <div className="md:col-span-3 text-[10px] uppercase tracking-[0.2em] font-bold text-white/40 pt-1">
+              Contact
+            </div>
+            <div className="md:col-span-9 text-[16px] font-extralight text-white/80 leading-relaxed space-y-8">
+              <p className="hover:text-white transition-colors cursor-pointer w-fit border-b border-transparent hover:border-white">
+                hello@elevatestudio.com
+              </p>
+              <p>
+                Ground Floor, Building: 08<br />
+                Dubai Media City<br />
+                Dubai, UAE
+              </p>
+            </div>
           </div>
-          <div className="md:col-span-3 space-y-8">
-            <p>hello@subframestudio.com</p>
-            <p className="leading-relaxed">
-              Ground Floor, Building: 08<br />
-              Dubai Media City<br />
-              Dubai, UAE
-            </p>
-          </div>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-4 text-white/80 font-light text-[16px]">
-          <div className="md:col-span-1">
-            <span className="opacity-50 mr-2">{'>'}</span>Social
-          </div>
-          <div className="md:col-span-3 flex flex-col space-y-2">
-            <a href="#" className="hover:text-white transition-colors">Instagram</a>
-            <a href="#" className="hover:text-white transition-colors">Behance</a>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-12 border-t border-white/10 pt-8 md:pt-12">
+            <div className="md:col-span-3 text-[10px] uppercase tracking-[0.2em] font-bold text-white/40 pt-1">
+              Social
+            </div>
+            <div className="md:col-span-9 flex items-center gap-6">
+              <SocialIcon icon={<Instagram size={20} />} href="#" />
+              <SocialIcon icon={<Twitter size={20} />} href="#" />
+              <SocialIcon icon={<Linkedin size={20} />} href="#" />
+              <SocialIcon icon={<Github size={20} />} href="#" />
+            </div>
           </div>
         </div>
       </div>
@@ -283,7 +284,7 @@ export function Lab() {
   return (
     <div className="w-full min-h-screen pt-48 pb-24 px-6 md:px-12">
       <div className="max-w-3xl mb-32 md:ml-24">
-        <h2 className="text-[25px] font-light text-white/80 leading-relaxed">
+        <h2 className="text-[22px] font-light text-white/80 leading-relaxed">
           <span className="opacity-50 mr-2">→</span>
           <strong className="font-bold text-white">We believe</strong> that great design and animation are born from a deep understanding of both the artistic and technical aspects of the craft. Here is our lab of research and development. We delve deep into the nuances of design and animation, exploring new techniques, technologies, and trends to create groundbreaking work.
         </h2>
@@ -291,15 +292,22 @@ export function Lab() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {labProjects.map((project, idx) => (
-          <div key={project.id} className={cn("relative overflow-hidden bg-studio-surface", idx % 2 === 0 ? "aspect-[4/5]" : "aspect-[4/3]")}>
+          <motion.div
+            key={project.id}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className={cn("relative overflow-hidden bg-studio-surface", idx % 2 === 0 ? "aspect-[4/5]" : "aspect-[4/3]")}
+          >
             <img src={project.imageUrl + '?lab'} className="w-full h-full object-cover transition-transform duration-[2s] hover:scale-110" alt="Lab Experiment" />
-          </div>
+          </motion.div>
         ))}
       </div>
 
       <div className="mt-24 flex justify-end">
-        <Link to="/" className="text-xl md:text-3xl text-white font-medium hover:opacity-50 transition-opacity flex items-center gap-2">
-          <span className="opacity-50">{'>'}</span> back
+        <Link to="/" className="text-sm font-medium tracking-widest uppercase text-white hover:opacity-50 transition-opacity flex items-center gap-2">
+          BACK
         </Link>
       </div>
     </div>
@@ -313,7 +321,14 @@ export function ProjectGrid() {
     <div className="w-full px-6 md:px-12 pb-24">
       <div className="columns-1 md:columns-2 gap-8">
         {projects.map((project, idx) => (
-          <div key={project.id} className="break-inside-avoid mb-8">
+          <motion.div
+            key={project.id}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="break-inside-avoid mb-8"
+          >
             <Link
               to={`/project/${project.id}`}
               className="relative block group overflow-hidden bg-studio-surface w-full"
@@ -337,7 +352,7 @@ export function ProjectGrid() {
                 </div>
               </div>
             </Link>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>
@@ -375,10 +390,10 @@ export function Team({ mini }: { mini?: boolean }) {
         {MOCK_TEAM.map((member, idx) => (
           <motion.div
             key={member.name}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: idx * 0.1 }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.8, delay: idx * 0.1, ease: "easeOut" }}
             className="space-y-6 group"
           >
             <div className="aspect-[3/4] overflow-hidden grayscale border border-studio-border group-hover:grayscale-0 transition-all duration-700">
@@ -390,7 +405,7 @@ export function Team({ mini }: { mini?: boolean }) {
               />
             </div>
             <div className="pl-4">
-              <h4 className="text-xl font-display font-bold">{member.name}</h4>
+              <h4 className="text-[22px] font-display font-bold">{member.name}</h4>
               <p className="text-[10px] uppercase tracking-widest text-studio-text-s font-bold">{member.role}</p>
             </div>
           </motion.div>
@@ -448,11 +463,19 @@ export function Clients() {
 
   return (
     <Section title="Our Clients">
-      <div className="flex flex-wrap items-center gap-12 md:gap-20 opacity-30 grayscale saturate-0 group-hover:grayscale-0 transition-all">
-        {clients.map((client) => (
-          <div key={client.id} className="text-xl font-bold tracking-tighter opacity-50 hover:opacity-100 transition-opacity whitespace-nowrap">
+      <div className="flex flex-wrap items-center gap-12 md:gap-20 opacity-30 grayscale saturate-0 hover:grayscale-0 transition-all">
+        {clients.map((client, idx) => (
+          <motion.div
+            key={client.id}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 0.5, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.6, delay: idx * 0.05, ease: "easeOut" }}
+            whileHover={{ opacity: 1 }}
+            className="text-[22px] font-bold tracking-tighter transition-opacity whitespace-nowrap cursor-default"
+          >
             {client.name}
-          </div>
+          </motion.div>
         ))}
       </div>
     </Section>
@@ -515,7 +538,7 @@ export function ContactForm({ mini }: { mini?: boolean }) {
     <Section title="Direct Inquiry">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
         <div className="lg:col-span-8 space-y-12">
-          <h3 className="text-4xl md:text-6xl font-display font-light leading-tight tracking-tighter">
+          <h3 className="text-[22px] font-display font-light leading-relaxed tracking-tighter uppercase">
             <strong className="font-bold">PARTNER WITH US</strong> <br />
             <span className="text-studio-text-s italic font-light">FOR THE FUTURE.</span>
           </h3>
@@ -528,7 +551,7 @@ export function ContactForm({ mini }: { mini?: boolean }) {
                   type="text"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full bg-studio-surface border border-studio-border p-5 text-lg outline-none focus:border-white transition-colors"
+                  className="w-full bg-studio-surface border border-studio-border p-5 text-[16px] font-extralight outline-none focus:border-white transition-colors"
                 />
               </div>
               <div className="space-y-2">
@@ -538,7 +561,7 @@ export function ContactForm({ mini }: { mini?: boolean }) {
                   type="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full bg-studio-surface border border-studio-border p-5 text-lg outline-none focus:border-white transition-colors"
+                  className="w-full bg-studio-surface border border-studio-border p-5 text-[16px] font-extralight outline-none focus:border-white transition-colors"
                 />
               </div>
             </div>
@@ -548,7 +571,7 @@ export function ContactForm({ mini }: { mini?: boolean }) {
                 required
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="w-full bg-studio-surface border border-studio-border p-5 text-lg outline-none focus:border-white transition-colors min-h-[160px] resize-none"
+                className="w-full bg-studio-surface border border-studio-border p-5 text-[16px] font-extralight outline-none focus:border-white transition-colors min-h-[160px] resize-none"
                 placeholder="Case study details..."
               />
             </div>
@@ -565,7 +588,7 @@ export function ContactForm({ mini }: { mini?: boolean }) {
           <div className="space-y-10 pl-6 border-l border-white/5">
             <div className="space-y-2">
               <p className="text-[10px] uppercase tracking-widest font-bold text-studio-text-s mb-4">Headquarters</p>
-              <p className="text-xl font-light leading-relaxed">
+              <p className="text-[16px] font-extralight leading-relaxed">
                 1280 Infinite Loop<br />
                 Design District<br />
                 New York, NY 10012
@@ -573,13 +596,13 @@ export function ContactForm({ mini }: { mini?: boolean }) {
             </div>
             <div className="space-y-2">
               <p className="text-[10px] uppercase tracking-widest font-bold text-studio-text-s mb-4">Direct Line</p>
-              <p className="text-xl font-light leading-relaxed hover:text-studio-text-s transition-colors cursor-pointer">
+              <p className="text-[16px] font-extralight leading-relaxed hover:text-white transition-colors cursor-pointer">
                 +1 (555) 019-2837
               </p>
             </div>
             <div className="space-y-2">
               <p className="text-[10px] uppercase tracking-widest font-bold text-studio-text-s mb-4">Electronic Mail</p>
-              <p className="text-xl font-light leading-relaxed hover:text-studio-text-s transition-colors cursor-pointer">
+              <p className="text-[16px] font-extralight leading-relaxed hover:text-white transition-colors cursor-pointer">
                 hello@elevatestudio.com
               </p>
             </div>
@@ -594,7 +617,13 @@ export function AboutUs() {
   return (
     <Section title="The Story">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-        <div className="relative aspect-[3/4] rounded-[32px] overflow-hidden grayscale brightness-75 border border-white/5 shadow-2xl">
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="relative aspect-[3/4] rounded-[32px] overflow-hidden grayscale brightness-75 border border-white/5 shadow-2xl"
+        >
           <img
             referrerPolicy="no-referrer"
             src="https://picsum.photos/seed/studio/800/1200"
@@ -602,9 +631,15 @@ export function AboutUs() {
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-studio-dark/20 mix-blend-overlay" />
-        </div>
-        <div className="space-y-12">
-          <h3 className="text-[25px] font-sans font-light leading-relaxed tracking-tight text-white">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="space-y-12"
+        >
+          <h3 className="text-[22px] font-sans font-light leading-relaxed tracking-tight text-white">
             <strong className="font-bold">We are a collective</strong> of designers & dreamers reimagining the digital landscape.
           </h3>
           <div className="space-y-6 text-[16px] text-studio-text-s leading-relaxed font-sans">
@@ -617,15 +652,15 @@ export function AboutUs() {
           </div>
           <div className="grid grid-cols-2 gap-12 pt-12">
             <div>
-              <p className="text-5xl font-sans font-bold text-white mb-2">150+</p>
-              <p className="text-sm font-medium text-studio-text-s">Projects Delivered</p>
+              <p className="text-[22px] font-sans font-bold text-white mb-2">150+</p>
+              <p className="text-[16px] font-extralight text-studio-text-s">Projects Delivered</p>
             </div>
             <div>
-              <p className="text-5xl font-sans font-bold text-white mb-2">12</p>
-              <p className="text-sm font-medium text-studio-text-s">Design Awards</p>
+              <p className="text-[22px] font-sans font-bold text-white mb-2">12</p>
+              <p className="text-[16px] font-extralight text-studio-text-s">Design Awards</p>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </Section>
   );
@@ -705,12 +740,12 @@ export function ProjectDetail() {
       </div>
 
       {/* Narrative Header */}
-      <div className="w-full max-w-4xl mx-auto px-6 py-24 md:py-32 flex flex-col items-center text-center space-y-8">
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-sans font-medium tracking-tight text-white">{project.title}</h1>
+      <div className="w-full max-w-4xl mx-auto px-6 py-16 md:py-24 flex flex-col items-center text-center space-y-2">
+        <h1 className="text-[22px] font-sans font-medium tracking-tight text-white">{project.title}</h1>
         <p className="text-sm tracking-widest text-studio-text-s uppercase">{project.category} — {project.year}</p>
 
-        <div className="w-full max-w-3xl pt-12">
-          <p className="text-[16px] text-white/80 leading-relaxed font-light">
+        <div className="w-full max-w-3xl pt-8">
+          <p className="text-[16px] text-white/80 leading-relaxed font-extralight">
             {project.description}
           </p>
         </div>
@@ -718,16 +753,34 @@ export function ProjectDetail() {
 
       {/* Additional Media Layout */}
       <div className="w-full px-6 md:px-12 space-y-8 pb-32">
-        <div className="w-full aspect-[21/9] bg-studio-surface relative overflow-hidden">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="w-full aspect-[21/9] bg-studio-surface relative overflow-hidden"
+        >
           <img src={project.imageUrl + '?1'} className="w-full h-full object-cover" alt="Process 1" />
-        </div>
+        </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="w-full aspect-[4/5] bg-studio-surface relative overflow-hidden">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
+            className="w-full aspect-[4/5] bg-studio-surface relative overflow-hidden"
+          >
             <img src={project.imageUrl + '?2'} className="w-full h-full object-cover" alt="Process 2" />
-          </div>
-          <div className="w-full aspect-[4/5] bg-studio-surface relative overflow-hidden">
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="w-full aspect-[4/5] bg-studio-surface relative overflow-hidden"
+          >
             <img src={project.imageUrl + '?3'} className="w-full h-full object-cover" alt="Process 3" />
-          </div>
+          </motion.div>
         </div>
       </div>
 
@@ -735,9 +788,9 @@ export function ProjectDetail() {
       <div className="w-full px-6 md:px-12 py-12 flex justify-between items-center border-t border-white/10">
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="text-sm font-medium tracking-widest uppercase text-white/50 hover:text-white transition-colors flex items-center gap-2"
+          className="text-sm font-medium tracking-widest uppercase text-white hover:opacity-50 transition-opacity flex items-center gap-2"
         >
-          <span className="opacity-50">↑</span> Top
+          <span className="opacity-50">↑</span> TOP
         </button>
 
         <button
@@ -747,7 +800,7 @@ export function ProjectDetail() {
           }}
           className="text-sm font-medium tracking-widest uppercase text-white hover:opacity-50 transition-opacity flex items-center gap-2"
         >
-          Close <span className="opacity-50">×</span>
+          BACK TO WORKS
         </button>
       </div>
     </motion.div>
