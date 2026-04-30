@@ -25,9 +25,9 @@ export function OurCorePage() {
     >
       <Section title="Our Core">
         <div className="space-y-12 mb-20">
-          <h1 className="text-6xl md:text-8xl font-display font-medium tracking-tighter uppercase leading-none">
-            THE MINDS <br/>
-            <span className="text-studio-text-s italic">BEHIND THE CRAFT.</span>
+          <h1 className="text-6xl md:text-8xl font-display font-light tracking-tighter uppercase leading-none">
+            <strong className="font-bold">THE MINDS</strong> <br/>
+            <span className="text-studio-text-s italic font-light">BEHIND THE CRAFT.</span>
           </h1>
           <p className="max-w-2xl text-xl font-light opacity-80 leading-relaxed font-display">
             A diverse collective of digital artists, engineers, and strategists united by a singular obsession: creating flawless digital experiences.
@@ -82,9 +82,9 @@ export function ServicesPage() {
     >
       <Section title="Expertise">
         <div className="space-y-12 mb-20">
-          <h1 className="text-6xl md:text-8xl font-display font-medium tracking-tighter uppercase leading-none">
-            WHAT WE <br/>
-            <span className="text-studio-text-s italic">BRING TO THE TABLE.</span>
+          <h1 className="text-6xl md:text-8xl font-display font-light tracking-tighter uppercase leading-none">
+            <strong className="font-bold">WHAT WE</strong> <br/>
+            <span className="text-studio-text-s italic font-light">BRING TO THE TABLE.</span>
           </h1>
         </div>
 
@@ -101,7 +101,7 @@ export function ServicesPage() {
               <div className="mb-8 text-studio-text-s group-hover:text-white transition-colors">
                 {service.icon}
               </div>
-              <h3 className="text-3xl font-display font-medium mb-4">{service.title}</h3>
+              <h3 className="text-3xl font-display font-bold mb-4">{service.title}</h3>
               <p className="text-sm font-light leading-relaxed text-studio-text-s group-hover:text-white/80 transition-colors">
                 {service.description}
               </p>
@@ -131,9 +131,9 @@ export function StackPage() {
     >
       <Section title="Arsenal">
         <div className="space-y-12 mb-20">
-          <h1 className="text-6xl md:text-8xl font-display font-medium tracking-tighter uppercase leading-none">
-            THE TOOLS <br/>
-            <span className="text-studio-text-s italic">WE FORGE WITH.</span>
+          <h1 className="text-6xl md:text-8xl font-display font-light tracking-tighter uppercase leading-none">
+            <strong className="font-bold">THE TOOLS</strong> <br/>
+            <span className="text-studio-text-s italic font-light">WE FORGE WITH.</span>
           </h1>
         </div>
 
@@ -167,7 +167,7 @@ export function TermsPage() {
     >
       <Section title="Legal">
         <div className="max-w-3xl space-y-8">
-          <h1 className="text-4xl md:text-6xl font-display font-medium tracking-tighter uppercase">Terms & Conditions</h1>
+          <h1 className="text-4xl md:text-6xl font-display font-bold tracking-tighter uppercase">Terms & Conditions</h1>
           <div className="space-y-6 text-sm font-light leading-relaxed text-studio-text-s">
             <p>Last updated: April 2026</p>
             <h2 className="text-xl font-medium text-white mt-8 mb-4">1. Acceptance of Terms</h2>
@@ -195,7 +195,7 @@ export function PrivacyPage() {
     >
       <Section title="Legal">
         <div className="max-w-3xl space-y-8">
-          <h1 className="text-4xl md:text-6xl font-display font-medium tracking-tighter uppercase">Privacy Policy</h1>
+          <h1 className="text-4xl md:text-6xl font-display font-bold tracking-tighter uppercase">Privacy Policy</h1>
           <div className="space-y-6 text-sm font-light leading-relaxed text-studio-text-s">
             <p>Last updated: April 2026</p>
             <h2 className="text-xl font-medium text-white mt-8 mb-4">1. Information We Collect</h2>

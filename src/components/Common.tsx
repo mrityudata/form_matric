@@ -1,85 +1,47 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { Moon, Sun, Menu, X, Instagram, Twitter, Linkedin, Github } from 'lucide-react';
+import { Moon, Sun, Menu, X, Instagram, Twitter, Linkedin, Github, Hexagon, ArrowUp } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from './ThemeProvider';
 import { cn } from '../lib/utils';
+import { useEffect } from 'react';
 
 export function Navbar() {
-  const { theme, toggleTheme } = useTheme();
-  const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
   const navItems = [
-    { name: 'Work', path: '/' },
-    { name: 'About', path: '/about' },
-    { name: 'Our Core', path: '/our-core' },
-    { name: 'Services', path: '/services' },
-    { name: 'Stack', path: '/stack' },
-    { name: 'Contact', path: '/contact' },
+    { name: 'LAB', path: '/lab' },
+    { name: 'WORKS', path: '/' },
+    { name: 'INFO', path: '/info' },
   ];
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-studio-dark border-b border-studio-border">
-      <div className="max-w-full mx-auto px-10 h-[60px] flex items-center justify-between text-white">
-        <Link
-          to="/"
-          className="text-lg font-sans font-bold tracking-[0.3em] uppercase"
-        >
-          ELEVATESTUDIO.COM
-        </Link>
+    <nav className="fixed top-0 left-0 w-full px-6 md:px-12 py-8 z-50 flex items-center justify-between text-white pointer-events-none">
+      <Link
+        to="/"
+        className="pointer-events-auto hover:opacity-50 transition-opacity"
+      >
+        <img
+          src={`${import.meta.env.BASE_URL}logo.png`}
+          alt="Formatric Studio"
+          className="h-20 w-20 object-contain brightness-0 invert"
+        />
+      </Link>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-10">
-          {navItems.map((item) => (
-            <Link
-              key={item.path}
-              to={item.path}
-              className={cn(
-                "text-[11px] uppercase tracking-widest font-medium transition-colors",
-                location.pathname === item.path ? "text-white" : "text-studio-text-s hover:text-white"
-              )}
-            >
-              {item.name}
-            </Link>
-          ))}
-          <div className="h-4 w-[1px] bg-studio-border" />
-          <button
-            onClick={toggleTheme}
-            className="w-10 h-5 bg-studio-surface border border-studio-border rounded-full relative cursor-pointer"
+      <div className="flex items-center gap-8 md:gap-16 pointer-events-auto">
+        {navItems.map((item) => (
+          <Link
+            key={item.path}
+            to={item.path}
+            className={cn(
+              "text-[11px] uppercase tracking-[0.2em] font-medium transition-opacity",
+              location.pathname === item.path ? "opacity-100" : "opacity-60 hover:opacity-100"
+            )}
           >
-            <motion.div
-              animate={{ x: theme === 'dark' ? 20 : 0 }}
-              className="absolute left-1 top-0.5 w-3 h-3 bg-white rounded-full"
-            />
-          </button>
-        </div>
-
-        {/* Mobile Nav Toggle */}
-        <button className="md:hidden text-studio-text-s hover:text-white" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
+            {item.name}
+          </Link>
+        ))}
       </div>
-
-      {/* Mobile Menu */}
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="absolute top-[60px] left-0 w-full bg-studio-dark border-b border-studio-border p-6 flex flex-col gap-6 md:hidden"
-        >
-          {navItems.map((item) => (
-            <Link
-              key={item.path}
-              to={item.path}
-              onClick={() => setIsOpen(false)}
-              className="text-sm uppercase tracking-widest font-medium text-left text-white"
-            >
-              {item.name}
-            </Link>
-          ))}
-        </motion.div>
-      )}
     </nav>
   );
 }
@@ -87,8 +49,8 @@ export function Navbar() {
 export function Footer() {
   return (
     <footer className="min-h-[100px] border-t border-studio-border flex flex-wrap items-center px-10 gap-x-12 gap-y-6 py-6 lg:py-0 whitespace-nowrap">
-      <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-studio-text-s shrink-0">Selected Clients</span>
-      <div className="flex items-center gap-8 md:gap-12 text-sm font-bold opacity-40 uppercase tracking-tighter overflow-x-auto">
+      <span className="text-sm font-semibold text-studio-text-s shrink-0">Selected Clients</span>
+      <div className="flex items-center gap-8 md:gap-12 text-base font-semibold text-studio-text-s overflow-x-auto">
         <span>Panasonic</span>
         <span>Nike</span>
         <span>Apple Inc.</span>
@@ -96,18 +58,18 @@ export function Footer() {
         <span>Tesla</span>
       </div>
       <div className="flex-1" />
-      <div className="flex flex-wrap items-center gap-6 text-[10px] uppercase tracking-widest font-bold">
-        <Link to="/terms" target="_blank" className="hover:text-white text-studio-text-s transition-colors underline underline-offset-4">Terms & Conditions</Link>
-        <Link to="/privacy" target="_blank" className="hover:text-white text-studio-text-s transition-colors underline underline-offset-4">Privacy Policy</Link>
+      <div className="flex flex-wrap items-center gap-6 text-sm font-medium">
+        <Link to="/terms" target="_blank" className="hover:text-white text-studio-text-s transition-colors">Terms & Conditions</Link>
+        <Link to="/privacy" target="_blank" className="hover:text-white text-studio-text-s transition-colors">Privacy Policy</Link>
       </div>
       <div className="flex items-center gap-6">
-        <SocialIcon icon={<Instagram size={14} />} href="#" />
-        <SocialIcon icon={<Twitter size={14} />} href="#" />
-        <SocialIcon icon={<Linkedin size={14} />} href="#" />
-        <SocialIcon icon={<Github size={14} />} href="#" />
+        <SocialIcon icon={<Instagram size={16} />} href="#" />
+        <SocialIcon icon={<Twitter size={16} />} href="#" />
+        <SocialIcon icon={<Linkedin size={16} />} href="#" />
+        <SocialIcon icon={<Github size={16} />} href="#" />
       </div>
-      <div className="text-[10px] uppercase tracking-widest text-studio-text-s w-full lg:w-auto text-center mt-4 lg:mt-0 lg:block">
-        © 2026 ELEVATESTUDIO.COM / Pushing Potential
+      <div className="text-sm text-studio-text-s w-full lg:w-auto text-center mt-4 lg:mt-0 lg:block">
+        © 2026 ElevateStudio / Pushing Potential
       </div>
     </footer>
   );
@@ -145,7 +107,7 @@ export function CookieBanner() {
     <motion.div
       initial={{ x: 100, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
-      className="fixed bottom-10 right-10 z-[60] bg-studio-surface text-white px-8 py-4 border border-studio-border flex items-center gap-6 shadow-2xl"
+      className="fixed bottom-10 right-10 z-[60] bg-studio-surface text-white px-8 py-4 border border-studio-border flex items-center gap-6 shadow-2xl rounded-2xl"
     >
       <span className="text-[11px] text-studio-text-s whitespace-nowrap">
         We use cookies to enhance your experience on our site.
@@ -157,5 +119,46 @@ export function CookieBanner() {
         Accept
       </button>
     </motion.div>
+  );
+}
+
+export function ScrollToTop() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const toggleVisibility = () => {
+      if (window.scrollY > 300) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
+    window.addEventListener('scroll', toggleVisibility);
+    return () => window.removeEventListener('scroll', toggleVisibility);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  return (
+    <motion.button
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{
+        opacity: isVisible ? 1 : 0,
+        scale: isVisible ? 1 : 0.8,
+        pointerEvents: isVisible ? 'auto' : 'none'
+      }}
+      whileHover={{ scale: 1.1 }}
+      onClick={scrollToTop}
+      className="fixed bottom-10 right-10 z-[50] w-12 h-12 bg-white text-black rounded-full flex items-center justify-center shadow-2xl cursor-pointer"
+      aria-label="Scroll to top"
+    >
+      <ArrowUp size={20} />
+    </motion.button>
   );
 }

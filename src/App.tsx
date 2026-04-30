@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { ThemeProvider, useTheme } from './components/ThemeProvider';
 import { Navbar, Footer, CookieBanner } from './components/Common';
-import { Hero, ProjectGrid, Clients, ContactForm, AboutUs, ProjectDetail } from './components/Content';
+import { Hero, ProjectGrid, Clients, ContactForm, AboutUs, ProjectDetail, Info, Lab } from './components/Content';
 import { OurCorePage, ServicesPage, StackPage, TermsPage, PrivacyPage } from './components/Pages';
 import { cn } from './lib/utils';
 
@@ -13,11 +13,11 @@ function AppContent() {
   return (
     <div className={cn(
       "min-h-screen flex flex-col",
-      theme === 'dark' ? "bg-studio-dark text-white" : "bg-studio-light text-studio-dark"
+      "bg-studio-dark text-white"
     )}>
       <Navbar />
 
-      <div className="flex-1 flex flex-col pt-[60px]">
+      <div className="flex-1 flex flex-col">
         <main className="flex-1 overflow-hidden">
           <AnimatePresence mode="wait">
             <Routes location={location}>
@@ -30,18 +30,26 @@ function AppContent() {
                 >
                   <Hero />
                   <ProjectGrid />
-                  <Clients />
                 </motion.div>
               } />
-              <Route path="/about" element={
+              <Route path="/info" element={
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <AboutUs />
-                  <Clients />
+                  <Info />
+                </motion.div>
+              } />
+              <Route path="/lab" element={
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <Lab />
                 </motion.div>
               } />
               <Route path="/our-core" element={<OurCorePage />} />

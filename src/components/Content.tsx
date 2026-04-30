@@ -15,7 +15,7 @@ export function Section({ children, className, title }: { children: React.ReactN
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-[10px] uppercase tracking-[0.5em] font-bold opacity-30 mb-8"
+            className="text-sm font-semibold text-studio-text-s mb-6"
           >
             {title}
           </motion.h2>
@@ -28,32 +28,31 @@ export function Section({ children, className, title }: { children: React.ReactN
 
 export function Hero() {
   return (
-    <Section className="min-h-[400px] flex items-center justify-start border-b border-studio-border pt-20">
-      <div className="space-y-4">
-        <p className="text-[10px] uppercase tracking-[0.3em] text-studio-text-s font-bold">Featured Case Study</p>
-        <div className="overflow-hidden">
-          <motion.h1
-            initial={{ y: "100%" }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[12vw] md:text-[8vw] font-display font-light leading-[0.85] tracking-tighter"
-          >
-            KINETIC FORMS 02
-          </motion.h1>
-        </div>
-        <div className="flex gap-4 text-[11px] uppercase tracking-wide text-studio-text-s font-medium">
-          <span>Visual Identity</span>
-          <span>/</span>
-          <span>Motion Graphics</span>
-          <span>/</span>
-          <span>2024</span>
-        </div>
+    <div className="w-full">
+      {/* Top Media Full Width */}
+      <div className="w-full h-[calc(50vh+40px)] relative overflow-hidden bg-[#050505]">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full h-full object-cover opacity-80 saturate-150"
+          src="https://www.w3schools.com/html/mov_bbb.mp4"
+        />
+        <div className="absolute inset-0 bg-black/20 mix-blend-overlay" />
       </div>
-    </Section>
+
+      {/* Statement text */}
+      <div className="px-6 md:px-12 pt-6 pb-16 md:pt-14 md:pb-24 max-w-4xl">
+        <h1 className="text-[25px] leading-relaxed font-light text-white tracking-tight">
+          <strong className="font-bold">We are a dynamic</strong> and forward-thinking creative team dedicated to transforming ideas into captivating visual experiences.
+        </h1>
+      </div>
+    </div>
   );
 }
 
-export const MOCK_PROJECTS = [
+const BASE_MOCK_PROJECTS = [
   {
     id: 'aether-ui',
     title: 'AETHER UI',
@@ -94,7 +93,87 @@ export const MOCK_PROJECTS = [
     year: '2024',
     role: 'Creative Dir.'
   },
+  {
+    id: 'stellar-dynamics',
+    title: 'STELLAR DYNAMICS',
+    category: 'Web Design',
+    imageUrl: 'https://picsum.photos/seed/stellar/1200/800',
+    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+    description: 'Next-generation web experience for an aerospace engineering firm.',
+    year: '2025',
+    role: 'Lead Design'
+  },
+  {
+    id: 'quantum-leap',
+    title: 'QUANTUM LEAP',
+    category: '3D Animation',
+    imageUrl: 'https://picsum.photos/seed/quantum/1200/800',
+    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+    description: 'Abstract 3D explorations representing quantum computing concepts.',
+    year: '2025',
+    role: '3D Artist'
+  },
+  {
+    id: 'nexus-app',
+    title: 'NEXUS APP',
+    category: 'UI/UX',
+    imageUrl: 'https://picsum.photos/seed/nexus/1200/800',
+    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4',
+    description: 'A decentralized finance application with a focus on accessibility.',
+    year: '2024',
+    role: 'Product Designer'
+  },
+  {
+    id: 'lumina-studios',
+    title: 'LUMINA STUDIOS',
+    category: 'Branding',
+    imageUrl: 'https://picsum.photos/seed/lumina/1200/800',
+    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4',
+    description: 'Brand identity refresh for a contemporary lighting design studio.',
+    year: '2023',
+    role: 'Art Director'
+  },
+  {
+    id: 'echo-systems',
+    title: 'ECHO SYSTEMS',
+    category: 'Web Development',
+    imageUrl: 'https://picsum.photos/seed/echo/1200/800',
+    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4',
+    description: 'Interactive data visualization dashboard for environmental analytics.',
+    year: '2025',
+    role: 'Frontend Dev'
+  },
+  {
+    id: 'aurora-fashion',
+    title: 'AURORA FASHION',
+    category: 'E-commerce',
+    imageUrl: 'https://picsum.photos/seed/aurora/1200/800',
+    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/VolkswagenGTIReview.mp4',
+    description: 'High-end fashion editorial platform with immersive scroll experiences.',
+    year: '2024',
+    role: 'Creative Lead'
+  },
 ];
+
+export const MOCK_PROJECTS = Array.from({ length: 50 }).map((_, i) => {
+  if (i < BASE_MOCK_PROJECTS.length) return BASE_MOCK_PROJECTS[i];
+
+  const widths = [800, 1200, 1600, 600, 1000];
+  const heights = [600, 800, 900, 1200, 1500];
+  const w = widths[i % widths.length];
+  const h = heights[i % heights.length];
+
+  return {
+    id: `dummy-project-${i}`,
+    title: `DUMMY PROJECT ${i}`,
+    category: ['Web Design', '3D Animation', 'UI/UX', 'Branding', 'E-commerce', 'Motion Graphics'][i % 6],
+    imageUrl: `https://picsum.photos/seed/dummy${i}/${w}/${h}`,
+    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+    description: `This is a generated dummy project for testing scrolling and lazy loading. Project number ${i}.`,
+    year: '2026',
+    role: 'Test Role'
+  };
+});
 
 export interface Project {
   id: string;
@@ -110,9 +189,11 @@ export interface Project {
 
 export function useProjects() {
   const [projects, setProjects] = useState<Project[]>(MOCK_PROJECTS as Project[]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    // Disabled Firebase temporarily as requested
+    /*
     console.log("🔥 Attempting to connect to Firestore and fetch 'projects' collection...");
     const q = collection(db, 'projects');
 
@@ -129,7 +210,7 @@ export function useProjects() {
       // Sort client-side to avoid requiring an 'order' field existence.
       docs.sort((a, b) => ((a.order || 0) - (b.order || 0)));
 
-      setProjects(docs.length > 0 ? docs : []);
+      setProjects(docs.length > 0 ? docs : MOCK_PROJECTS as Project[]);
       setLoading(false);
     }, (error) => {
       console.error("❌ Error fetching projects from Firestore:", error);
@@ -137,55 +218,129 @@ export function useProjects() {
     });
 
     return () => unsubscribe();
+    */
   }, []);
 
   return { projects, loading };
+}
+
+export function Info() {
+  return (
+    <div className="w-full min-h-screen relative pt-32 pb-24 px-6 md:px-12 flex items-center">
+      {/* Background abstract overlay to match the original style but in dark mode */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <img src="https://picsum.photos/seed/info/1920/1080" className="w-full h-full object-cover blur-3xl opacity-20 saturate-150" alt="Info background" />
+      </div>
+
+      <div className="relative z-10 w-full max-w-4xl space-y-24">
+        <h2 className="text-[25px] font-light text-white leading-relaxed">
+          <span className="opacity-50 mr-2">→</span>
+          <strong className="font-bold">We are a dynamic and forward-thinking creative team</strong> dedicated to transforming ideas into captivating visual experiences. With a passion for design and a commitment to excellence, we craft unique and impactful solutions that resonate with our clients and their audiences.
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-4 text-white/80 font-light text-[16px]">
+          <div className="md:col-span-1">
+            <span className="opacity-50 mr-2">{'>'}</span>Clients
+          </div>
+          <div className="md:col-span-3 leading-relaxed">
+            Huawei, Nike, Maxon, Louis Vuitton, Torry Burch, Vollebak, Adidas, Samsung, Oppo, Tiffany, Adobe
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-4 text-white/80 font-light text-[16px]">
+          <div className="md:col-span-1">
+            <span className="opacity-50 mr-2">{'>'}</span>Contact
+          </div>
+          <div className="md:col-span-3 space-y-8">
+            <p>hello@subframestudio.com</p>
+            <p className="leading-relaxed">
+              Ground Floor, Building: 08<br />
+              Dubai Media City<br />
+              Dubai, UAE
+            </p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-4 text-white/80 font-light text-[16px]">
+          <div className="md:col-span-1">
+            <span className="opacity-50 mr-2">{'>'}</span>Social
+          </div>
+          <div className="md:col-span-3 flex flex-col space-y-2">
+            <a href="#" className="hover:text-white transition-colors">Instagram</a>
+            <a href="#" className="hover:text-white transition-colors">Behance</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function Lab() {
+  const { projects } = useProjects();
+  // Use a subset of projects for the Lab grid to simulate experiments
+  const labProjects = projects.slice(0, 4);
+
+  return (
+    <div className="w-full min-h-screen pt-48 pb-24 px-6 md:px-12">
+      <div className="max-w-3xl mb-32 md:ml-24">
+        <h2 className="text-[25px] font-light text-white/80 leading-relaxed">
+          <span className="opacity-50 mr-2">→</span>
+          <strong className="font-bold text-white">We believe</strong> that great design and animation are born from a deep understanding of both the artistic and technical aspects of the craft. Here is our lab of research and development. We delve deep into the nuances of design and animation, exploring new techniques, technologies, and trends to create groundbreaking work.
+        </h2>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {labProjects.map((project, idx) => (
+          <div key={project.id} className={cn("relative overflow-hidden bg-studio-surface", idx % 2 === 0 ? "aspect-[4/5]" : "aspect-[4/3]")}>
+            <img src={project.imageUrl + '?lab'} className="w-full h-full object-cover transition-transform duration-[2s] hover:scale-110" alt="Lab Experiment" />
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-24 flex justify-end">
+        <Link to="/" className="text-xl md:text-3xl text-white font-medium hover:opacity-50 transition-opacity flex items-center gap-2">
+          <span className="opacity-50">{'>'}</span> back
+        </Link>
+      </div>
+    </div>
+  );
 }
 
 export function ProjectGrid() {
   const { projects } = useProjects();
 
   return (
-    <Section title="Portfolio">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
+    <div className="w-full px-6 md:px-12 pb-24">
+      <div className="columns-1 md:columns-2 gap-8">
         {projects.map((project, idx) => (
-          <motion.div
-            key={project.id}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: idx * 0.1 }}
-            className="group block border border-studio-border p-6 bg-studio-surface hover:bg-studio-border transition-colors duration-500"
-          >
-            <Link to={`/project/${project.id}`} className="block">
-              <div className="relative aspect-video overflow-hidden">
-                <motion.img
-                  referrerPolicy="no-referrer"
+          <div key={project.id} className="break-inside-avoid mb-8">
+            <Link
+              to={`/project/${project.id}`}
+              className="relative block group overflow-hidden bg-studio-surface w-full"
+            >
+              <div className={cn("w-full relative",
+                idx % 5 === 0 ? "aspect-square" :
+                  idx % 4 === 0 ? "aspect-[3/4]" :
+                    idx % 3 === 0 ? "aspect-[16/9]" :
+                      idx % 2 === 0 ? "aspect-[4/3]" :
+                        "aspect-[4/5]"
+              )}>
+                <img
                   src={project.imageUrl}
+                  className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105"
                   alt={project.title}
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.6 }}
-                  className="w-full h-full object-cover grayscale opacity-50 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-700"
+                  loading="lazy"
                 />
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <span className="text-[10px] uppercase tracking-[0.5em] font-bold border border-white px-6 py-2 rounded-full">View Story</span>
+                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <div className="absolute bottom-6 right-6 text-right z-10 mix-blend-difference text-white">
+                  <p className="text-sm font-medium tracking-widest uppercase">{project.title}</p>
                 </div>
               </div>
-              <div className="mt-8 flex justify-between items-end">
-                <div>
-                  <p className="text-[10px] uppercase tracking-widest text-studio-text-s mb-2">{project.category}</p>
-                  <h3 className="text-3xl font-display font-medium tracking-tight mb-4">{project.title}</h3>
-                </div>
-                <div className="mb-4">
-                  <ExternalLink size={16} className="text-studio-text-s group-hover:text-white transition-colors" />
-                </div>
-              </div>
-              <div className="h-[1px] w-full bg-studio-border group-hover:bg-white/20 transition-colors" />
             </Link>
-          </motion.div>
+          </div>
         ))}
       </div>
-    </Section>
+    </div>
   );
 }
 
@@ -234,7 +389,7 @@ export function Team({ mini }: { mini?: boolean }) {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="border-l border-studio-border pl-4">
+            <div className="pl-4">
               <h4 className="text-xl font-display font-bold">{member.name}</h4>
               <p className="text-[10px] uppercase tracking-widest text-studio-text-s font-bold">{member.role}</p>
             </div>
@@ -292,7 +447,7 @@ export function Clients() {
   const { clients } = useClients();
 
   return (
-    <Section className="border-t border-studio-border" title="Our Clients">
+    <Section title="Our Clients">
       <div className="flex flex-wrap items-center gap-12 md:gap-20 opacity-30 grayscale saturate-0 group-hover:grayscale-0 transition-all">
         {clients.map((client) => (
           <div key={client.id} className="text-xl font-bold tracking-tighter opacity-50 hover:opacity-100 transition-opacity whitespace-nowrap">
@@ -360,9 +515,9 @@ export function ContactForm({ mini }: { mini?: boolean }) {
     <Section title="Direct Inquiry">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
         <div className="lg:col-span-8 space-y-12">
-          <h3 className="text-4xl md:text-6xl font-display font-bold leading-tight tracking-tighter">
-            PARTNER WITH US <br />
-            <span className="text-studio-text-s italic">FOR THE FUTURE.</span>
+          <h3 className="text-4xl md:text-6xl font-display font-light leading-tight tracking-tighter">
+            <strong className="font-bold">PARTNER WITH US</strong> <br />
+            <span className="text-studio-text-s italic font-light">FOR THE FUTURE.</span>
           </h3>
           <form onSubmit={handleSubmit} className="space-y-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -407,7 +562,7 @@ export function ContactForm({ mini }: { mini?: boolean }) {
           </form>
         </div>
         <div className="lg:col-span-4 space-y-12 pt-4">
-          <div className="space-y-10 border-l border-studio-border pl-10">
+          <div className="space-y-10 pl-6 border-l border-white/5">
             <div className="space-y-2">
               <p className="text-[10px] uppercase tracking-widest font-bold text-studio-text-s mb-4">Headquarters</p>
               <p className="text-xl font-light leading-relaxed">
@@ -439,7 +594,7 @@ export function AboutUs() {
   return (
     <Section title="The Story">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-        <div className="relative aspect-[3/4] overflow-hidden grayscale brightness-75">
+        <div className="relative aspect-[3/4] rounded-[32px] overflow-hidden grayscale brightness-75 border border-white/5 shadow-2xl">
           <img
             referrerPolicy="no-referrer"
             src="https://picsum.photos/seed/studio/800/1200"
@@ -449,25 +604,25 @@ export function AboutUs() {
           <div className="absolute inset-0 bg-studio-dark/20 mix-blend-overlay" />
         </div>
         <div className="space-y-12">
-          <h3 className="text-4xl md:text-5xl font-display font-medium leading-tight tracking-tight">
-            WE ARE A COLLECTIVE OF DESIGNERS & DREAMERS REIMAGINING THE DIGITAL LANDSCAPE.
+          <h3 className="text-[25px] font-sans font-light leading-relaxed tracking-tight text-white">
+            <strong className="font-bold">We are a collective</strong> of designers & dreamers reimagining the digital landscape.
           </h3>
-          <div className="space-y-6 text-lg opacity-60 leading-relaxed font-light">
+          <div className="space-y-6 text-[16px] text-studio-text-s leading-relaxed font-sans">
             <p>
-              Founded in 2026, ELEVATESTUDIO.COM was born from a desire to bring artistic integrity to the functional world of digital products. We don't just build websites; we craft digital sculptures that command attention.
+              Founded in 2026, ElevateStudio was born from a desire to bring artistic integrity to the functional world of digital products. We don't just build websites; we craft digital sculptures that command attention.
             </p>
             <p>
               Our process is iterative, data-driven, and relentlessly aesthetic. We believe that true minimalism isn't the absence of elements, but the presence of perfection.
             </p>
           </div>
-          <div className="grid grid-cols-2 gap-12 pt-12 border-t border-current/10">
+          <div className="grid grid-cols-2 gap-12 pt-12">
             <div>
-              <p className="text-4xl font-display font-bold">150+</p>
-              <p className="text-[10px] uppercase tracking-widest font-bold opacity-40">Projects Delivered</p>
+              <p className="text-5xl font-sans font-bold text-white mb-2">150+</p>
+              <p className="text-sm font-medium text-studio-text-s">Projects Delivered</p>
             </div>
             <div>
-              <p className="text-4xl font-display font-bold">12</p>
-              <p className="text-[10px] uppercase tracking-widest font-bold opacity-40">Design Awards</p>
+              <p className="text-5xl font-sans font-bold text-white mb-2">12</p>
+              <p className="text-sm font-medium text-studio-text-s">Design Awards</p>
             </div>
           </div>
         </div>
@@ -517,10 +672,11 @@ export function ProjectDetail() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="pb-24"
+      exit={{ opacity: 0 }}
+      className="min-h-screen w-full bg-studio-dark"
     >
-      {/* Header */}
-      <div className="relative w-full h-[60vh] overflow-hidden bg-studio-surface">
+      {/* Hero Media Full Bleed */}
+      <div className="relative w-full h-[85vh] overflow-hidden">
         {!videoError ? (
           <video
             ref={videoRef}
@@ -529,99 +685,71 @@ export function ProjectDetail() {
             loop
             playsInline
             onError={() => setVideoError(true)}
-            className="w-full h-full object-cover opacity-60"
+            className="w-full h-full object-cover"
             src={project.videoUrl}
           />
         ) : (
           <img
             src={project.imageUrl}
-            className="w-full h-full object-cover opacity-40 grayscale"
+            className="w-full h-full object-cover"
             alt={project.title}
           />
         )}
-        <div className="absolute inset-0 flex items-center justify-center">
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           {!videoError && (
-            <motion.button
-              onClick={togglePlay}
-              whileHover={{ scale: 1.1 }}
-              className="w-20 h-20 rounded-full border border-white flex items-center justify-center bg-black/20 backdrop-blur-sm"
-            >
+            <div className="w-20 h-20 rounded-full border border-white flex items-center justify-center bg-black/20 backdrop-blur-sm pointer-events-auto cursor-pointer" onClick={togglePlay}>
               {isPlaying ? <Pause size={32} /> : <Play size={32} className="ml-1" />}
-            </motion.button>
+            </div>
           )}
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 -mt-20 relative z-10">
-        <button
-          onClick={() => navigate(-1)}
-          className="flex items-center gap-2 text-xs uppercase tracking-widest font-bold mb-12 hover:gap-4 transition-all"
-        >
-          <ArrowLeft size={16} /> Back to Portfolio
-        </button>
+      {/* Narrative Header */}
+      <div className="w-full max-w-4xl mx-auto px-6 py-24 md:py-32 flex flex-col items-center text-center space-y-8">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-sans font-medium tracking-tight text-white">{project.title}</h1>
+        <p className="text-sm tracking-widest text-studio-text-s uppercase">{project.category} — {project.year}</p>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-24">
-          <div className="lg:col-span-8 space-y-12">
-            <div className="space-y-4">
-              <p className="text-[10px] uppercase tracking-[0.5em] font-bold text-studio-text-s">{project.category}</p>
-              <h1 className="text-6xl md:text-8xl font-display font-medium tracking-tighter uppercase leading-none">{project.title}</h1>
-            </div>
-
-            <ProjectSection title="The Concept">
-              <p className="text-xl md:text-2xl font-light opacity-80 leading-relaxed font-display">
-                {project.description}
-              </p>
-            </ProjectSection>
-
-            <div className="aspect-video border border-studio-border bg-studio-surface overflow-hidden">
-              <img
-                src={project.imageUrl + '?noise'}
-                className="w-full h-full object-cover grayscale brightness-75"
-                alt="Process"
-                referrerPolicy="no-referrer"
-              />
-            </div>
-          </div>
-
-          <aside className="lg:col-span-4 space-y-12 pt-12">
-            <div className="space-y-8 border-l border-studio-border pl-10 pt-4">
-              <DetailItem label="Year" value={project.year} />
-              <DetailItem label="Role" value={project.role} />
-              <DetailItem label="Technology" value="Webgl, React, Motion" />
-              <DetailItem label="Client" value="Internal / Confidential" />
-            </div>
-
-            <div className="p-8 border border-studio-border bg-studio-surface space-y-6">
-              <h4 className="text-xs uppercase tracking-widest font-bold">Inquiry</h4>
-              <p className="text-sm text-studio-text-s leading-relaxed">Interested in a project like this? Contact us for a detailed case study.</p>
-              <button
-                onClick={() => navigate('/contact')}
-                className="w-full py-4 bg-white text-black text-[10px] font-bold uppercase tracking-widest hover:bg-studio-text-s transition-colors"
-              >
-                Start a project
-              </button>
-            </div>
-          </aside>
+        <div className="w-full max-w-3xl pt-12">
+          <p className="text-[16px] text-white/80 leading-relaxed font-light">
+            {project.description}
+          </p>
         </div>
       </div>
+
+      {/* Additional Media Layout */}
+      <div className="w-full px-6 md:px-12 space-y-8 pb-32">
+        <div className="w-full aspect-[21/9] bg-studio-surface relative overflow-hidden">
+          <img src={project.imageUrl + '?1'} className="w-full h-full object-cover" alt="Process 1" />
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="w-full aspect-[4/5] bg-studio-surface relative overflow-hidden">
+            <img src={project.imageUrl + '?2'} className="w-full h-full object-cover" alt="Process 2" />
+          </div>
+          <div className="w-full aspect-[4/5] bg-studio-surface relative overflow-hidden">
+            <img src={project.imageUrl + '?3'} className="w-full h-full object-cover" alt="Process 3" />
+          </div>
+        </div>
+      </div>
+
+      {/* Navigation Footer */}
+      <div className="w-full px-6 md:px-12 py-12 flex justify-between items-center border-t border-white/10">
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="text-sm font-medium tracking-widest uppercase text-white/50 hover:text-white transition-colors flex items-center gap-2"
+        >
+          <span className="opacity-50">↑</span> Top
+        </button>
+
+        <button
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            navigate('/');
+          }}
+          className="text-sm font-medium tracking-widest uppercase text-white hover:opacity-50 transition-opacity flex items-center gap-2"
+        >
+          Close <span className="opacity-50">×</span>
+        </button>
+      </div>
     </motion.div>
-  );
-}
-
-function ProjectSection({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <div className="space-y-6">
-      <h3 className="text-[10px] uppercase tracking-[0.3em] font-bold text-studio-text-s">{title}</h3>
-      {children}
-    </div>
-  );
-}
-
-function DetailItem({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="space-y-1">
-      <p className="text-[9px] uppercase tracking-[0.2em] font-bold text-studio-text-s opacity-60">{label}</p>
-      <p className="text-sm font-medium tracking-tight uppercase">{value}</p>
-    </div>
   );
 }
