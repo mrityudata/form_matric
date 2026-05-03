@@ -2,10 +2,9 @@ import React, { useRef, useState, useEffect } from 'react';
 import { motion, useInView } from 'motion/react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Play, Pause, ExternalLink, Instagram, Twitter, Linkedin, Github } from 'lucide-react';
-import { db } from '../lib/firebase';
-import { collection, addDoc, getDocs, query, orderBy, serverTimestamp, doc, onSnapshot } from 'firebase/firestore';
 import { cn } from '../lib/utils';
 import { SocialIcon } from './Common';
+import * as api from '../lib/api';
 
 export function Section({ children, className, title }: { children: React.ReactNode; className?: string; title?: string }) {
   return (
@@ -178,6 +177,7 @@ export const MOCK_PROJECTS = Array.from({ length: 50 }).map((_, i) => {
 
 export interface Project {
   id: string;
+  _id?: string; // MongoDB ID
   title: string;
   category: string;
   imageUrl: string;
@@ -185,41 +185,28 @@ export interface Project {
   description: string;
   year: string;
   role: string;
+  aspectRatio: string;
   order?: number;
 }
 
 export function useProjects() {
-  const [projects, setProjects] = useState<Project[]>(MOCK_PROJECTS as Project[]);
-  const [loading, setLoading] = useState(false);
+  const [projects, setProjects] = useState<Project[]>(MOCK_PROJECTS as unknown as Project[]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Disabled Firebase temporarily as requested
-    /*
-    console.log("🔥 Attempting to connect to Firestore and fetch 'projects' collection...");
-    const q = collection(db, 'projects');
-
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      console.log(`✅ Successfully connected to Firestore!`);
-      console.log(`📊 Found ${snapshot.size} documents in the 'projects' collection.`);
-
-      const docs = snapshot.docs.map(docRef => {
-        const data = docRef.data();
-        console.log(`📄 Document [${docRef.id}]:`, data);
-        return { id: docRef.id, ...data } as Project;
-      });
-
-      // Sort client-side to avoid requiring an 'order' field existence.
-      docs.sort((a, b) => ((a.order || 0) - (b.order || 0)));
-
-      setProjects(docs.length > 0 ? docs : MOCK_PROJECTS as Project[]);
-      setLoading(false);
-    }, (error) => {
-      console.error("❌ Error fetching projects from Firestore:", error);
-      setLoading(false);
-    });
-
-    return () => unsubscribe();
-    */
+    const loadProjects = async () => {
+      try {
+        const data = await api.fetchProjects();
+        // Map MongoDB _id to id for compatibility
+        const formattedData = data.map((p: any) => ({ ...p, id: p._id }));
+        setProjects(formattedData.length > 0 ? formattedData : MOCK_PROJECTS as unknown as Project[]);
+      } catch (err) {
+        console.error('Error loading projects:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadProjects();
   }, []);
 
   return { projects, loading };
@@ -317,9 +304,20 @@ export function Lab() {
 export function ProjectGrid() {
   const { projects } = useProjects();
 
+  const getAspectClass = (ratio: string) => {
+    switch (ratio) {
+      case '16:9': return 'aspect-[16/9]';
+      case '4:3': return 'aspect-[4/3]';
+      case '1:1': return 'aspect-square';
+      case '9:16': return 'aspect-[9/16]';
+      case '3:2': return 'aspect-[3/2]';
+      default: return 'aspect-[16/9]';
+    }
+  };
+
   return (
     <div className="w-full px-6 md:px-12 pb-24">
-      <div className="columns-1 md:columns-2 gap-8">
+      <div className="columns-1 md:columns-2 lg:columns-3 gap-8">
         {projects.map((project, idx) => (
           <motion.div
             key={project.id}
@@ -333,22 +331,25 @@ export function ProjectGrid() {
               to={`/project/${project.id}`}
               className="relative block group overflow-hidden bg-studio-surface w-full"
             >
-              <div className={cn("w-full relative",
-                idx % 5 === 0 ? "aspect-square" :
-                  idx % 4 === 0 ? "aspect-[3/4]" :
-                    idx % 3 === 0 ? "aspect-[16/9]" :
-                      idx % 2 === 0 ? "aspect-[4/3]" :
-                        "aspect-[4/5]"
-              )}>
+              <div className={cn("w-full relative overflow-hidden", getAspectClass(project.aspectRatio))}>
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105 opacity-0 group-hover:opacity-100 z-10"
+                  src={project.videoUrl}
+                />
                 <img
                   src={project.imageUrl}
-                  className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105 z-0"
                   alt={project.title}
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                <div className="absolute bottom-6 right-6 text-right z-10 mix-blend-difference text-white">
+                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-20" />
+                <div className="absolute bottom-6 right-6 text-right z-30 mix-blend-difference text-white">
                   <p className="text-sm font-medium tracking-widest uppercase">{project.title}</p>
+                  <p className="text-[10px] opacity-60 tracking-widest uppercase mt-1">{project.category}</p>
                 </div>
               </div>
             </Link>
@@ -430,29 +431,18 @@ export function useClients() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log("🔥 Attempting to connect to Firestore and fetch 'clients' collection...");
-    const q = collection(db, 'clients');
-
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      console.log(`✅ Successfully connected to Firestore!`);
-      console.log(`📊 Found ${snapshot.size} documents in the 'clients' collection.`);
-
-      const docs = snapshot.docs.map(docRef => {
-        const data = docRef.data();
-        console.log(`📄 Client Document [${docRef.id}]:`, data);
-        return { id: docRef.id, ...data } as Client;
-      });
-
-      docs.sort((a, b) => ((a.order || 0) - (b.order || 0)));
-
-      setClients(docs.length > 0 ? docs : MOCK_CLIENTS.map(name => ({ id: name, name })));
-      setLoading(false);
-    }, (error) => {
-      console.error("❌ Error fetching clients from Firestore:", error);
-      setLoading(false);
-    });
-
-    return () => unsubscribe();
+    const loadClients = async () => {
+      try {
+        const data = await api.fetchClients();
+        const formattedData = data.map((c: any) => ({ ...c, id: c._id }));
+        setClients(formattedData.length > 0 ? formattedData : MOCK_CLIENTS.map(name => ({ id: name, name })));
+      } catch (err) {
+        console.error('Error loading clients:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadClients();
   }, []);
 
   return { clients, loading };
@@ -491,10 +481,7 @@ export function ContactForm({ mini }: { mini?: boolean }) {
     setStatus('loading');
 
     try {
-      await addDoc(collection(db, 'contact_messages'), {
-        ...formData,
-        createdAt: serverTimestamp()
-      });
+      await api.submitContactForm(formData);
       setStatus('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
       setTimeout(() => setStatus('idle'), 5000);
@@ -670,20 +657,28 @@ export function ProjectDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const [project, setProject] = useState<Project | null>(MOCK_PROJECTS.find(p => p.id === id) as Project || null);
+  const [project, setProject] = useState<Project | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [videoError, setVideoError] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!id) return;
-    const docRef = doc(db, 'projects', id);
-    const unsubscribe = onSnapshot(docRef, (docSnap) => {
-      if (docSnap.exists()) {
-        setProject({ id: docSnap.id, ...docSnap.data() } as Project);
+    const loadProject = async () => {
+      try {
+        const data = await api.fetchProjectById(id);
+        setProject({ ...data, id: data._id });
+      } catch (err) {
+        console.error('Error loading project:', err);
+        // Fallback to mock if not found in API
+        const mock = MOCK_PROJECTS.find(p => p.id === id);
+        if (mock) setProject(mock as unknown as Project);
+      } finally {
+        setLoading(false);
       }
-    });
-    return () => unsubscribe();
+    };
+    loadProject();
   }, [id]);
 
   useEffect(() => {

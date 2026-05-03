@@ -118,7 +118,7 @@ export function StackPage() {
     { category: "Design", tools: ["Figma", "Adobe CC", "Cinema 4D", "Blender"] },
     { category: "Frontend", tools: ["React", "Next.js", "TypeScript", "Tailwind CSS"] },
     { category: "Motion", tools: ["Framer Motion", "GSAP", "Three.js", "WebGL"] },
-    { category: "Backend & Cloud", tools: ["Node.js", "Firebase", "Supabase", "AWS"] },
+    { category: "Backend & Cloud", tools: ["Node.js", "MongoDB", "Supabase", "AWS"] },
   ];
 
   return (
