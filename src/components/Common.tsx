@@ -10,8 +10,10 @@ export function Navbar() {
   const location = useLocation();
 
   const navItems = [
-    { name: 'LAB', path: '/lab' },
     { name: 'WORKS', path: '/' },
+    { name: 'PROCESS', path: '/process' },
+    { name: 'CAPABILITIES', path: '/capabilities' },
+    { name: 'LAB', path: '/lab' },
     { name: 'INFO', path: '/info' },
   ];
 
@@ -24,7 +26,7 @@ export function Navbar() {
         <img
           src={`${import.meta.env.BASE_URL}logo.png`}
           alt="Formatric Studio"
-          className="h-20 w-20 object-contain brightness-0 invert"
+          className="h-6 w-6 object-contain brightness-0 invert"
         />
       </Link>
 
@@ -55,7 +57,7 @@ export function Footer() {
         <Link to="/privacy" target="_blank" className="hover:text-white text-studio-text-s transition-colors">Privacy Policy</Link>
       </div>
       <div className="text-sm text-studio-text-s w-full lg:w-auto text-center mt-4 lg:mt-0 lg:block">
-        © 2026 ElevateStudio / Pushing Potential
+        © 2026 FormMatricStudio
       </div>
     </footer>
   );

@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { ThemeProvider, useTheme } from './components/ThemeProvider';
 import { Navbar, Footer, CookieBanner } from './components/Common';
-import { Hero, ProjectGrid, Clients, ContactForm, AboutUs, ProjectDetail, Info, Lab } from './components/Content';
+import { Hero, ProjectGrid, Clients, ContactForm, AboutUs, ProjectDetail, Info, Lab, Capabilities, Process } from './components/Content';
 import { OurCorePage, ServicesPage, StackPage, TermsPage, PrivacyPage } from './components/Pages';
 import { cn } from './lib/utils';
 
@@ -57,6 +57,26 @@ function AppContent() {
               <Route path="/stack" element={<StackPage />} />
               <Route path="/terms" element={<TermsPage />} />
               <Route path="/privacy" element={<PrivacyPage />} />
+              <Route path="/process" element={
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <Process />
+                </motion.div>
+              } />
+              <Route path="/capabilities" element={
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <Capabilities />
+                </motion.div>
+              } />
               <Route path="/contact" element={
                 <motion.div
                   initial={{ opacity: 0 }}
