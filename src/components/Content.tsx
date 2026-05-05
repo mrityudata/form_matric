@@ -37,7 +37,7 @@ export function Hero() {
           loop
           playsInline
           className="w-full h-full object-cover opacity-80 saturate-150"
-          src="https://www.w3schools.com/html/mov_bbb.mp4"
+          src="https://res.cloudinary.com/drvwdc4j8/video/upload/v1777998153/jacrawgnobkeonhlciqo.mp4"
         />
         <div className="absolute inset-0 bg-black/20 mix-blend-overlay" />
       </div>
@@ -45,7 +45,7 @@ export function Hero() {
       {/* Statement text */}
       <div className="px-6 md:px-12 pt-6 pb-16 md:pt-14 md:pb-24 max-w-2xl">
         <h1 className="text-[22px] leading-relaxed font-light text-white tracking-tight">
-          <strong className="font-bold">We are a dynamic</strong> and forward-thinking creative team dedicated to transforming ideas into captivating visual experiences.
+          <strong className="font-bold">WE ARE A COLLECTIVE</strong> OF DESIGNERS & DREAMERS REIMAGINING THE DIGITAL LANDSCAPE.
         </h1>
       </div>
     </div>
@@ -213,11 +213,34 @@ export function useProjects() {
 }
 
 export function Info() {
+  const [isExpanded, setIsExpanded] = React.useState(false);
+
+  const allClients = [
+    { name: 'Huawei', domain: 'huawei.com' },
+    { name: 'Nike', domain: 'nike.com' },
+    { name: 'Maxon', domain: 'maxon.net' },
+    { name: 'Louis Vuitton', domain: 'louisvuitton.com' },
+    { name: 'Tory Burch', domain: 'toryburch.com' },
+    { name: 'Vollebak', domain: 'vollebak.com' },
+    { name: 'Adidas', domain: 'adidas.com' },
+    { name: 'Samsung', domain: 'samsung.com' },
+    { name: 'Oppo', domain: 'oppo.com' },
+    { name: 'Tiffany', domain: 'tiffany.com' },
+    { name: 'Adobe', domain: 'adobe.com' },
+    { name: 'Apple', domain: 'apple.com' },
+    { name: 'Sony', domain: 'sony.com' },
+    { name: 'Microsoft', domain: 'microsoft.com' },
+    { name: 'Google', domain: 'google.com' },
+    { name: 'Meta', domain: 'meta.com' },
+  ];
+
+  const visibleClients = isExpanded ? allClients : allClients.slice(0, 8);
+
   return (
     <div className="w-full min-h-screen pt-40 pb-32 px-6 md:px-12 flex items-center bg-studio-dark">
       <div className="w-full max-w-5xl space-y-16 md:space-y-24">
         <h2 className="text-[22px] font-light text-white leading-relaxed">
-          <strong className="font-bold">We are a dynamic and forward-thinking creative team</strong> dedicated to transforming ideas into captivating visual experiences. With a passion for design and a commitment to excellence, we craft unique and impactful solutions that resonate with our clients and their audiences.
+          <strong className="font-bold">WE ARE A COLLECTIVE OF DESIGNERS & DREAMERS REIMAGINING THE DIGITAL LANDSCAPE.</strong><br /> Formatric is a quality and creativity-driven studio delivering exceptional strategies, designs, and campaigns to businesses like yours.
         </h2>
 
         <div className="space-y-8 md:space-y-12">
@@ -225,8 +248,43 @@ export function Info() {
             <div className="md:col-span-3 text-[10px] uppercase tracking-[0.2em] font-bold text-white/40 pt-1">
               Clients
             </div>
-            <div className="md:col-span-9 text-[16px] font-extralight text-white/80 leading-relaxed">
-              Huawei, Nike, Maxon, Louis Vuitton, Torry Burch, Vollebak, Adidas, Samsung, Oppo, Tiffany, Adobe
+            <div className="md:col-span-9 space-y-12">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-10">
+                {visibleClients.map((client) => (
+                  <motion.div
+                    layout
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    key={client.name}
+                    className="flex items-center gap-4 group"
+                  >
+                    <div className="w-10 h-10 flex-shrink-0 bg-white/5 border border-white/10 rounded-full overflow-hidden p-2 group-hover:bg-white group-hover:border-white transition-all duration-500">
+                      <img
+                        src={`https://www.google.com/s2/favicons?domain=${client.domain}&sz=128`}
+                        alt={client.name}
+                        className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all opacity-80 group-hover:opacity-100"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                          e.currentTarget.parentElement!.style.display = 'none';
+                        }}
+                      />
+                    </div>
+                    <span className="text-[13px] uppercase tracking-widest font-light text-white/60 group-hover:text-white transition-colors">
+                      {client.name}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
+
+              {allClients.length > 8 && (
+                <button
+                  onClick={() => setIsExpanded(!isExpanded)}
+                  className="text-[10px] uppercase tracking-[0.3em] font-bold text-white/40 hover:text-white transition-colors flex items-center gap-2 group"
+                >
+                  <span className="w-8 h-[1px] bg-white/20 group-hover:bg-white transition-colors" />
+                  {isExpanded ? 'VIEW LESS' : `VIEW ALL (${allClients.length})`}
+                </button>
+              )}
             </div>
           </div>
 
@@ -236,12 +294,12 @@ export function Info() {
             </div>
             <div className="md:col-span-9 text-[16px] font-extralight text-white/80 leading-relaxed space-y-8">
               <p className="hover:text-white transition-colors cursor-pointer w-fit border-b border-transparent hover:border-white">
-                hello@elevatestudio.com
+                hello@formmatricstudios.com
               </p>
               <p>
-                Ground Floor, Building: 08<br />
-                Dubai Media City<br />
-                Dubai, UAE
+                Ground Floor, Building: 01<br />
+                Mohali Sebiz, Square<br />
+                Mohali, Punjab
               </p>
             </div>
           </div>
@@ -272,12 +330,11 @@ export function Lab() {
     <div className="w-full min-h-screen pt-48 pb-24 px-6 md:px-12">
       <div className="max-w-3xl mb-32 md:ml-24">
         <h2 className="text-[22px] font-light text-white/80 leading-relaxed">
-          <span className="opacity-50 mr-2">→</span>
           <strong className="font-bold text-white">We believe</strong> that great design and animation are born from a deep understanding of both the artistic and technical aspects of the craft. Here is our lab of research and development. We delve deep into the nuances of design and animation, exploring new techniques, technologies, and trends to create groundbreaking work.
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         {labProjects.map((project, idx) => (
           <motion.div
             key={project.id}
@@ -801,3 +858,147 @@ export function ProjectDetail() {
     </motion.div>
   );
 }
+
+export function Capabilities() {
+  const capabilities = [
+    { title: "Product CGI & Visualisation", description: "High-end product visuals built for advertising and digital use. Used when the product needs to look precise, refined, and consistent across formats. Ideal for launch campaigns, product pages, and performance ads where the visual carries the message." },
+    { title: "Brand Assets & Campaign Visuals", description: "Films that show the product in context. Built for campaigns where movement, usage, and storytelling matter. Outputs designed for TV, digital ads, and social platforms." },
+    { title: "Motion Design", description: "Motion that makes the work easier to understand and harder to ignore. Used to guide attention, highlight features, and keep the visual engaging across short-form and campaign content." },
+    { title: "Full Asset Sets", description: "Campaigns need more than a single visual to work. We create the full set. Adaptations, variations, and supporting assets built to run across ads, websites, and social while keeping the look and message consistent." },
+    { title: "Content & Films", description: "Content built for how it’s actually consumed. Short-form visuals, product-led content, and campaign films designed to hold attention and communicate quickly, whether it’s a reel, an ad, or a longer format piece." },
+  ];
+
+  return (
+    <div className="w-full min-h-screen pt-48 pb-32 px-6 md:px-12 flex items-center bg-studio-dark">
+      <div className="w-full max-w-6xl mx-auto space-y-12 md:space-y-18">
+        {/* Intro Statement */}
+        <div className="max-w-3xl space-y-8">
+          <h2 className="text-[10px] uppercase tracking-[0.4em] font-bold text-studio-text-s mb-8">Expertise</h2>
+          <h1 className="text-[22px] md:text-[32px] leading-tight font-display font-light text-white tracking-tighter uppercase">
+            <strong className="font-bold">HOW A PRODUCT IS PRESENTED</strong> <br />
+            DECIDES HOW IT’S PERCEIVED.
+          </h1>
+          <p className="text-[18px] md:text-[22px] font-extralight text-white/80 leading-relaxed font-sans">
+            We create visuals that give products a premium feel, hold attention, and are ready to be used across campaigns, ads, and digital platforms.
+          </p>
+          <p className="text-[14px] font-extralight text-studio-text-s leading-relaxed max-w-2xl">
+            In 10+ years, our work has spanned categories like beauty, electronics, FMCG, and lifestyle, with outputs built for everything from TV commercials and launch campaigns to e-commerce and social.
+          </p>
+        </div>
+
+        <div className="w-full">
+          {/* Top Media Full Width */}
+          <div className="w-full h-[calc(50vh+40px)] relative overflow-hidden bg-[#050505]">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-full object-cover opacity-80 saturate-150"
+              src="https://res.cloudinary.com/drvwdc4j8/video/upload/v1777998153/jacrawgnobkeonhlciqo.mp4"
+            />
+            <div className="absolute inset-0 bg-black/20 mix-blend-overlay" />
+          </div>
+        </div>
+
+        {/* Capabilities Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-16 border-t border-white/5 pt-8">
+          {capabilities.map((cap, idx) => (
+            <motion.div
+              key={cap.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1, duration: 0.8 }}
+              className="space-y-4"
+            >
+              <h3 className="text-[18px] md:text-[22px] font-sans font-bold text-white tracking-tighter uppercase">{cap.title}</h3>
+              <p className="text-[15px] md:text-[16px] font-extralight text-studio-text-s leading-relaxed max-w-md">
+                {cap.description}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function Process() {
+  const steps = [
+    {
+      no: "01",
+      title: "Exploration",
+      subtitle: "RESEARCH & DIRECTION",
+      description: "We explore multiple directions before settling on one. References, quick studies, and early visuals to test how different approaches hold up. You review the options, we discuss what works, and a direction is chosen with clarity."
+    },
+    {
+      no: "02",
+      title: "Development",
+      subtitle: "REFINEMENT & PRODUCTION",
+      description: "The chosen direction is built out in detail. Layouts are defined, motion is tested where needed, and assets are developed across formats. Feedback is handled in rounds, with each pass tightening the work and keeping it consistent."
+    },
+    {
+      no: "03",
+      title: "Delivery",
+      subtitle: "HAND-OFF & SUPPORT",
+      description: "Assets are produced, refined, and delivered ready to use. Final assets are refined, checked across formats, and delivered in the required outputs. Supporting files are included so the work can be used and extended without dependency."
+    }
+  ];
+
+  return (
+    <div className="w-full min-h-screen pt-48 pb-32 px-6 md:px-12 flex flex-col items-center bg-studio-dark">
+      <div className="w-full max-w-6xl mx-auto space-y-32 md:space-y-48">
+
+        {/* Intro Section */}
+        <div className="max-w-3xl space-y-8">
+          <h2 className="text-[10px] uppercase tracking-[0.4em] font-bold text-studio-text-s mb-8">Methodology</h2>
+          <h1 className="text-[22px] md:text-[32px] leading-tight font-display font-light text-white tracking-tighter uppercase">
+            <strong className="font-bold">STARTING A PROJECT</strong> <br />
+            WITH US.
+          </h1>
+          <p className="text-[18px] md:text-[22px] font-extralight text-white/80 leading-relaxed font-sans italic">
+            Projects come in at different stages. Some are just ideas, some are already mapped out.
+          </p>
+          <div className="space-y-6 text-[15px] md:text-[16px] font-extralight text-studio-text-s leading-relaxed max-w-2xl">
+            <p>
+              Either way, it usually starts with a conversation. We’ll talk through what you’re trying to do, share how we’d approach it, and figure out what makes sense within your time.
+            </p>
+            <p>
+              From there, we help shape the brief, define a clear direction, and map out how the work will move forward.
+            </p>
+          </div>
+        </div>
+
+        {/* Steps Section */}
+        <div className="space-y-32 md:space-y-48">
+          {steps.map((step, idx) => (
+            <motion.div
+              key={step.title}
+              initial={{ opacity: 0, x: idx % 2 === 0 ? -30 : 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, ease: "easeOut" }}
+              className={cn(
+                "flex flex-col md:flex-row gap-8 md:gap-24 items-start",
+                idx % 2 !== 0 && "md:flex-row-reverse md:text-right"
+              )}
+            >
+              <div className="text-[80px] md:text-[120px] font-display font-bold leading-none text-white/5 tracking-tighter">
+                {step.no}
+              </div>
+              <div className="space-y-6 pt-4">
+                <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-studio-text-s">{step.subtitle}</p>
+                <h3 className="text-3xl md:text-5xl font-display font-bold text-white uppercase tracking-tighter">{step.title}</h3>
+                <p className="text-[18px] md:text-[22px] font-extralight text-white/80 leading-relaxed max-w-xl">
+                  {step.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
