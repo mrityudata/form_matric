@@ -13,7 +13,7 @@ export function Navbar() {
     { name: 'WORKS', path: '/' },
     { name: 'PROCESS', path: '/process' },
     { name: 'CAPABILITIES', path: '/capabilities' },
-    { name: 'LAB', path: '/lab' },
+    // { name: 'LAB', path: '/lab' },
     { name: 'INFO', path: '/info' },
   ];
 
@@ -26,7 +26,7 @@ export function Navbar() {
         <img
           src={`${import.meta.env.BASE_URL}logo.png`}
           alt="Formatric Studio"
-          className="h-6 w-6 object-contain brightness-0 invert"
+          className="h-8 w-8 object-contain brightness-0 invert"
         />
       </Link>
 

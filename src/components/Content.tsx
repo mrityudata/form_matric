@@ -321,6 +321,7 @@ export function Info() {
   );
 }
 
+/*
 export function Lab() {
   const { projects } = useProjects();
   // Use a subset of projects for the Lab grid to simulate experiments
@@ -357,6 +358,7 @@ export function Lab() {
     </div>
   );
 }
+*/
 
 export function ProjectGrid() {
   const { projects } = useProjects();

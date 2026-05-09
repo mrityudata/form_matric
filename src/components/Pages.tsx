@@ -26,7 +26,7 @@ export function OurCorePage() {
       <Section title="Our Core">
         <div className="space-y-12 mb-20">
           <h1 className="text-[22px] leading-relaxed font-light text-white tracking-tight uppercase">
-            <strong className="font-bold">THE MINDS</strong> <br/>
+            <strong className="font-bold">THE MINDS</strong> <br />
             <span className="text-studio-text-s italic font-light">BEHIND THE CRAFT.</span>
           </h1>
           <p className="max-w-2xl text-[16px] font-extralight text-white/80 leading-relaxed font-display">
@@ -83,7 +83,7 @@ export function ServicesPage() {
       <Section title="Expertise">
         <div className="space-y-12 mb-20">
           <h1 className="text-[22px] leading-relaxed font-light text-white tracking-tight uppercase">
-            <strong className="font-bold">WHAT WE</strong> <br/>
+            <strong className="font-bold">WHAT WE</strong> <br />
             <span className="text-studio-text-s italic font-light">BRING TO THE TABLE.</span>
           </h1>
         </div>
@@ -132,7 +132,7 @@ export function StackPage() {
       <Section title="Arsenal">
         <div className="space-y-12 mb-20">
           <h1 className="text-[22px] leading-relaxed font-light text-white tracking-tight uppercase">
-            <strong className="font-bold">THE TOOLS</strong> <br/>
+            <strong className="font-bold">THE TOOLS</strong> <br />
             <span className="text-studio-text-s italic font-light">WE FORGE WITH.</span>
           </h1>
         </div>
