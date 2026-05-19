@@ -24,9 +24,9 @@ export function Navbar() {
         className="pointer-events-auto hover:opacity-50 transition-opacity"
       >
         <img
-          src={`${import.meta.env.BASE_URL}logo.png`}
+          src={`${import.meta.env.BASE_URL}logo.svg`}
           alt="Formatric Studio"
-          className="h-8 w-8 object-contain brightness-0 invert"
+          className="h-8 w-8 object-contain brightness-100"
         />
       </Link>
 
