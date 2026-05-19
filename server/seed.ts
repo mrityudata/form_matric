@@ -13,114 +13,70 @@ if (!MONGODB_URI) {
 
 const demoProjects = [
   {
-    title: 'AETHER UI',
-    category: 'Product Design',
-    imageUrl: 'https://picsum.photos/seed/aether/1200/800',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
-    description: 'A comprehensive design system for high-performance trading platforms. Focused on data density and minimalist cognitive load.',
-    year: '2024',
-    role: 'Lead Design',
+    title: 'THE CORE IDENTITY',
+    category: 'Brand Experience',
+    imageUrl: 'https://pub-f15bf555afca4089b788128c27f746ec.r2.dev/FM-P1/E6/E6_Frame242_01.jpg',
+    videoUrl: 'https://drive.google.com/file/d/16diWoSti8hwvEysU-TyFJbp9-lVCP4TR/view?usp=sharing',
+    description: 'A study in minimalist branding and digital narrative. We crafted a unique visual language that prioritizes clarity and emotional resonance.',
+    year: '2026',
+    role: 'Art Direction',
     aspectRatio: '16:9',
+    galleryImages: [
+      'https://pub-f15bf555afca4089b788128c27f746ec.r2.dev/FM-P1/E6/E6_Frame300_01.jpg',
+      'https://pub-f15bf555afca4089b788128c27f746ec.r2.dev/FM-P1/E6/E6_Frame380_01.jpg',
+      'https://pub-f15bf555afca4089b788128c27f746ec.r2.dev/FM-P1/E6/E6_Frame52_01.jpg',
+      'https://pub-f15bf555afca4089b788128c27f746ec.r2.dev/FM-P1/E6/E6_Frame681_01.jpg'
+    ],
     order: 1
   },
   {
-    title: 'CYBERPUNK 2077',
-    category: 'Motion Graphics',
-    imageUrl: 'https://picsum.photos/seed/cyber/1200/800',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
-    description: 'Dynamic interface animations and kinetic typography for the definitive futuristic RPG experience.',
-    year: '2023',
-    role: 'Motion Art',
+    title: 'NEON FRONTIER',
+    category: 'Motion Design',
+    imageUrl: 'https://pub-f15bf555afca4089b788128c27f746ec.r2.dev/FM-P2/E12/E12_01.jpg',
+    videoUrl: 'https://pixabay.com/videos/download/video-353074_source.mp4',
+    description: 'Kinetic typography and dynamic interface design for a futuristic gaming environment.',
+    year: '2025',
+    role: 'Motion Lead',
     aspectRatio: '4:3',
+    galleryImages: [
+      'https://pub-f15bf555afca4089b788128c27f746ec.r2.dev/FM-P2/E12/E12_03.jpg',
+      'https://pub-f15bf555afca4089b788128c27f746ec.r2.dev/FM-P2/E12/E12_04.jpg',
+      'https://pub-f15bf555afca4089b788128c27f746ec.r2.dev/FM-P2/E12/E12_05.jpg',
+      'https://pub-f15bf555afca4089b788128c27f746ec.r2.dev/FM-P2/E12/E12_06.jpg'
+    ],
     order: 2
   },
   {
-    title: 'ZENITH WATCHES',
+    title: 'CHRONOS ELITE',
     category: 'E-commerce',
-    imageUrl: 'https://picsum.photos/seed/zenith/1200/800',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
-    description: 'A luxury e-commerce experience that bridges the gap between mechanical heritage and digital future.',
-    year: '2024',
-    role: 'Full Stack',
+    imageUrl: 'https://pub-f15bf555afca4089b788128c27f746ec.r2.dev/FM-P3/Headphone/MIX_Frame_01.jpg',
+    videoUrl: 'https://pixabay.com/videos/download/video-353075_source.mp4',
+    description: 'Luxury watch interface designed for seamless high-end commerce.',
+    year: '2025',
+    role: 'Creative Tech',
     aspectRatio: '1:1',
+    galleryImages: [
+      'https://pub-f15bf555afca4089b788128c27f746ec.r2.dev/FM-P3/Headphone/MIX_Frame_102.jpg',
+      'https://pub-f15bf555afca4089b788128c27f746ec.r2.dev/FM-P3/Headphone/MIX_Frame_317.jpg',
+      'https://pub-f15bf555afca4089b788128c27f746ec.r2.dev/FM-P3/Headphone/MIX_Lineup_001.jpg'
+    ],
     order: 3
   },
   {
-    title: 'NOVA FRAGRANCE',
-    category: 'Branding',
-    imageUrl: 'https://picsum.photos/seed/nova/1200/800',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',
-    description: 'Visual identity and immersive landing page for a revolutionary scent-tech startup.',
-    year: '2024',
-    role: 'Creative Dir.',
+    title: 'AURA SENSORY',
+    category: 'Digital Branding',
+    imageUrl: 'https://pub-f15bf555afca4089b788128c27f746ec.r2.dev/FM-P4/TWS/IEM_4K_001.jpg',
+    videoUrl: 'https://pixabay.com/videos/download/video-353077_source.mp4',
+    description: 'An immersive digital identity for a luxury fragrance brand.',
+    year: '2026',
+    role: 'Lead Designer',
     aspectRatio: '9:16',
+    galleryImages: [
+      'https://pub-f15bf555afca4089b788128c27f746ec.r2.dev/FM-P4/TWS/IEM_4K_001.jpg',
+      'https://pub-f15bf555afca4089b788128c27f746ec.r2.dev/FM-P4/TWS/IEM_4K_002.jpg',
+      'https://pub-f15bf555afca4089b788128c27f746ec.r2.dev/FM-P4/TWS/IEM_4K_003.jpg'
+    ],
     order: 4
-  },
-  {
-    title: 'STELLAR DYNAMICS',
-    category: 'Web Design',
-    imageUrl: 'https://picsum.photos/seed/stellar/1200/800',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-    description: 'Next-generation web experience for an aerospace engineering firm.',
-    year: '2025',
-    role: 'Lead Design',
-    aspectRatio: '3:2',
-    order: 5
-  },
-  {
-    title: 'QUANTUM LEAP',
-    category: '3D Animation',
-    imageUrl: 'https://picsum.photos/seed/quantum/1200/800',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
-    description: 'Abstract 3D explorations representing quantum computing concepts.',
-    year: '2025',
-    role: '3D Artist',
-    aspectRatio: '16:9',
-    order: 6
-  },
-  {
-    title: 'NEXUS APP',
-    category: 'UI/UX',
-    imageUrl: 'https://picsum.photos/seed/nexus/1200/800',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4',
-    description: 'A decentralized finance application with a focus on accessibility.',
-    year: '2024',
-    role: 'Product Designer',
-    aspectRatio: '4:3',
-    order: 7
-  },
-  {
-    title: 'LUMINA STUDIOS',
-    category: 'Branding',
-    imageUrl: 'https://picsum.photos/seed/lumina/1200/800',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4',
-    description: 'Brand identity refresh for a contemporary lighting design studio.',
-    year: '2023',
-    role: 'Art Director',
-    aspectRatio: '1:1',
-    order: 8
-  },
-  {
-    title: 'ECHO SYSTEMS',
-    category: 'Web Development',
-    imageUrl: 'https://picsum.photos/seed/echo/1200/800',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4',
-    description: 'Interactive data visualization dashboard for environmental analytics.',
-    year: '2025',
-    role: 'Frontend Dev',
-    aspectRatio: '3:2',
-    order: 9
-  },
-  {
-    title: 'AURORA FASHION',
-    category: 'E-commerce',
-    imageUrl: 'https://picsum.photos/seed/aurora/1200/800',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/VolkswagenGTIReview.mp4',
-    description: 'High-end fashion editorial platform with immersive scroll experiences.',
-    year: '2024',
-    role: 'Creative Lead',
-    aspectRatio: '9:16',
-    order: 10
   }
 ];
 
@@ -144,7 +100,7 @@ const seedDB = async () => {
     console.log('🗑️ Cleared existing projects');
 
     await Project.insertMany(demoProjects);
-    console.log('🌱 Seeded 10 demo projects');
+    console.log('🌱 Seeded 4 demo projects');
 
     await Client.deleteMany({});
     console.log('🗑️ Cleared existing clients');

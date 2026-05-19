@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { motion, useInView } from 'motion/react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Play, Pause, ExternalLink, Instagram, Twitter, Linkedin, Github } from 'lucide-react';
-import { cn } from '../lib/utils';
+import { cn, getDriveDirectLink } from '../lib/utils';
 import { SocialIcon } from './Common';
 import * as api from '../lib/api';
 
@@ -30,14 +30,14 @@ export function Hero() {
   return (
     <div className="w-full">
       {/* Top Media Full Width */}
-      <div className="w-full h-[calc(50vh+40px)] relative overflow-hidden bg-[#050505]">
+      <div className="w-full h-[calc(60vh+40px)] relative overflow-hidden bg-[#050505]">
         <video
           autoPlay
           muted
           loop
           playsInline
           className="w-full h-full object-cover opacity-80 saturate-150"
-          src="https://res.cloudinary.com/drvwdc4j8/video/upload/v1777998153/jacrawgnobkeonhlciqo.mp4"
+          src="https://res.cloudinary.com/drvwdc4j8/video/upload/v1778917409/yritr4km5u3q89frgh7t.mp4"
         />
         <div className="absolute inset-0 bg-black/20 mix-blend-overlay" />
       </div>
@@ -54,126 +54,76 @@ export function Hero() {
 
 const BASE_MOCK_PROJECTS = [
   {
-    id: 'aether-ui',
-    title: 'AETHER UI',
-    category: 'Product Design',
-    imageUrl: 'https://picsum.photos/seed/aether/1200/800',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
-    description: 'A comprehensive design system for high-performance trading platforms. Focused on data density and minimalist cognitive load.',
-    year: '2024',
-    role: 'Lead Design'
+    id: 'real-project-1',
+    title: 'THE CORE IDENTITY',
+    category: 'Brand Experience',
+    imageUrl: 'https://pub-f15bf555afca4089b788128c27f746ec.r2.dev/FM-P1/E6/E6_Frame242_01.jpg',
+    videoUrl: 'https://pixabay.com/videos/download/video-353061_large.mp4',
+    description: 'A study in minimalist branding and digital narrative. We crafted a unique visual language that prioritizes clarity and emotional resonance.',
+    year: '2026',
+    role: 'Art Direction',
+    aspectRatio: '16:9',
+    galleryImages: [
+      'https://pub-f15bf555afca4089b788128c27f746ec.r2.dev/FM-P1/E6/E6_Frame300_01.jpg',
+      'https://pub-f15bf555afca4089b788128c27f746ec.r2.dev/FM-P1/E6/E6_Frame380_01.jpg',
+      'https://pub-f15bf555afca4089b788128c27f746ec.r2.dev/FM-P1/E6/E6_Frame52_01.jpg',
+      'https://pub-f15bf555afca4089b788128c27f746ec.r2.dev/FM-P1/E6/E6_Frame681_01.jpg'
+    ]
   },
   {
     id: 'cyberpunk-2077',
-    title: 'CYBERPUNK 2077',
-    category: 'Motion Graphics',
-    imageUrl: 'https://picsum.photos/seed/cyber/1200/800',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
-    description: 'Dynamic interface animations and kinetic typography for the definitive futuristic RPG experience.',
-    year: '2023',
-    role: 'Motion Art'
+    title: 'NEON FRONTIER',
+    category: 'Motion Design',
+    imageUrl: 'https://pub-f15bf555afca4089b788128c27f746ec.r2.dev/FM-P2/E12/E12_01.jpg',
+    videoUrl: 'https://pixabay.com/videos/download/video-353074_source.mp4',
+    description: 'Kinetic typography and dynamic interface design for a futuristic gaming environment.',
+    year: '2025',
+    role: 'Motion Lead',
+    aspectRatio: '4:3',
+    galleryImages: [
+      'https://pub-f15bf555afca4089b788128c27f746ec.r2.dev/FM-P2/E12/E12_03.jpg',
+      'https://pub-f15bf555afca4089b788128c27f746ec.r2.dev/FM-P2/E12/E12_04.jpg',
+      'https://pub-f15bf555afca4089b788128c27f746ec.r2.dev/FM-P2/E12/E12_05.jpg',
+      'https://pub-f15bf555afca4089b788128c27f746ec.r2.dev/FM-P2/E12/E12_06.jpg'
+    ]
   },
   {
     id: 'zenith-watches',
-    title: 'ZENITH WATCHES',
+    title: 'CHRONOS ELITE',
     category: 'E-commerce',
-    imageUrl: 'https://picsum.photos/seed/zenith/1200/800',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
-    description: 'A luxury e-commerce experience that bridges the gap between mechanical heritage and digital future.',
-    year: '2024',
-    role: 'Full Stack'
+    imageUrl: 'https://pub-f15bf555afca4089b788128c27f746ec.r2.dev/FM-P3/Headphone/MIX_Frame_01.jpg',
+    videoUrl: 'https://pixabay.com/videos/download/video-353075_source.mp4',
+    description: 'Luxury watch interface designed for seamless high-end commerce.',
+    year: '2025',
+    role: 'Creative Tech',
+    aspectRatio: '1:1',
+    galleryImages: [
+      'https://pub-f15bf555afca4089b788128c27f746ec.r2.dev/FM-P3/Headphone/MIX_Frame_102.jpg',
+      'https://pub-f15bf555afca4089b788128c27f746ec.r2.dev/FM-P3/Headphone/MIX_Frame_317.jpg',
+      'https://pub-f15bf555afca4089b788128c27f746ec.r2.dev/FM-P3/Headphone/MIX_Lineup_001.jpg'
+    ]
   },
   {
     id: 'nova-fragrance',
-    title: 'NOVA FRAGRANCE',
-    category: 'Branding',
-    imageUrl: 'https://picsum.photos/seed/nova/1200/800',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',
-    description: 'Visual identity and immersive landing page for a revolutionary scent-tech startup.',
-    year: '2024',
-    role: 'Creative Dir.'
-  },
-  {
-    id: 'stellar-dynamics',
-    title: 'STELLAR DYNAMICS',
-    category: 'Web Design',
-    imageUrl: 'https://picsum.photos/seed/stellar/1200/800',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-    description: 'Next-generation web experience for an aerospace engineering firm.',
-    year: '2025',
-    role: 'Lead Design'
-  },
-  {
-    id: 'quantum-leap',
-    title: 'QUANTUM LEAP',
-    category: '3D Animation',
-    imageUrl: 'https://picsum.photos/seed/quantum/1200/800',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
-    description: 'Abstract 3D explorations representing quantum computing concepts.',
-    year: '2025',
-    role: '3D Artist'
-  },
-  {
-    id: 'nexus-app',
-    title: 'NEXUS APP',
-    category: 'UI/UX',
-    imageUrl: 'https://picsum.photos/seed/nexus/1200/800',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4',
-    description: 'A decentralized finance application with a focus on accessibility.',
-    year: '2024',
-    role: 'Product Designer'
-  },
-  {
-    id: 'lumina-studios',
-    title: 'LUMINA STUDIOS',
-    category: 'Branding',
-    imageUrl: 'https://picsum.photos/seed/lumina/1200/800',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4',
-    description: 'Brand identity refresh for a contemporary lighting design studio.',
-    year: '2023',
-    role: 'Art Director'
-  },
-  {
-    id: 'echo-systems',
-    title: 'ECHO SYSTEMS',
-    category: 'Web Development',
-    imageUrl: 'https://picsum.photos/seed/echo/1200/800',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4',
-    description: 'Interactive data visualization dashboard for environmental analytics.',
-    year: '2025',
-    role: 'Frontend Dev'
-  },
-  {
-    id: 'aurora-fashion',
-    title: 'AURORA FASHION',
-    category: 'E-commerce',
-    imageUrl: 'https://picsum.photos/seed/aurora/1200/800',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/VolkswagenGTIReview.mp4',
-    description: 'High-end fashion editorial platform with immersive scroll experiences.',
-    year: '2024',
-    role: 'Creative Lead'
-  },
+    title: 'AURA SENSORY',
+    category: 'Digital Branding',
+    imageUrl: 'https://pub-f15bf555afca4089b788128c27f746ec.r2.dev/FM-P4/TWS/IEM_4K_001.jpg',
+    videoUrl: 'https://pixabay.com/videos/download/video-353077_source.mp4',
+    description: 'An immersive digital identity for a luxury fragrance brand.',
+    year: '2026',
+    role: 'Lead Designer',
+    aspectRatio: '9:16',
+    galleryImages: [
+      'https://pub-f15bf555afca4089b788128c27f746ec.r2.dev/FM-P4/TWS/IEM_4K_001.jpg',
+      'https://pub-f15bf555afca4089b788128c27f746ec.r2.dev/FM-P4/TWS/IEM_4K_002.jpg',
+      'https://pub-f15bf555afca4089b788128c27f746ec.r2.dev/FM-P4/TWS/IEM_4K_003.jpg'
+    ]
+  }
 ];
 
-export const MOCK_PROJECTS = Array.from({ length: 50 }).map((_, i) => {
-  if (i < BASE_MOCK_PROJECTS.length) return BASE_MOCK_PROJECTS[i];
+export const MOCK_PROJECTS = BASE_MOCK_PROJECTS;
 
-  const widths = [800, 1200, 1600, 600, 1000];
-  const heights = [600, 800, 900, 1200, 1500];
-  const w = widths[i % widths.length];
-  const h = heights[i % heights.length];
 
-  return {
-    id: `dummy-project-${i}`,
-    title: `DUMMY PROJECT ${i}`,
-    category: ['Web Design', '3D Animation', 'UI/UX', 'Branding', 'E-commerce', 'Motion Graphics'][i % 6],
-    imageUrl: `https://picsum.photos/seed/dummy${i}/${w}/${h}`,
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
-    description: `This is a generated dummy project for testing scrolling and lazy loading. Project number ${i}.`,
-    year: '2026',
-    role: 'Test Role'
-  };
-});
 
 export interface Project {
   id: string;
@@ -186,6 +136,7 @@ export interface Project {
   year: string;
   role: string;
   aspectRatio: string;
+  galleryImages?: string[];
   order?: number;
 }
 
@@ -258,11 +209,11 @@ export function Info() {
                     key={client.name}
                     className="flex items-center gap-4 group"
                   >
-                    <div className="w-10 h-10 flex-shrink-0 bg-white/5 border border-white/10 rounded-full overflow-hidden p-2 group-hover:bg-white group-hover:border-white transition-all duration-500">
+                    <div className="w-10 h-10 flex-shrink-0 bg-white/10 border border-white/20 rounded-full overflow-hidden p-2 group-hover:bg-white group-hover:border-white transition-all duration-500">
                       <img
                         src={`https://www.google.com/s2/favicons?domain=${client.domain}&sz=128`}
                         alt={client.name}
-                        className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all opacity-80 group-hover:opacity-100"
+                        className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all opacity-100"
                         onError={(e) => {
                           e.currentTarget.style.display = 'none';
                           e.currentTarget.parentElement!.style.display = 'none';
@@ -321,6 +272,7 @@ export function Info() {
   );
 }
 
+/*
 export function Lab() {
   const { projects } = useProjects();
   // Use a subset of projects for the Lab grid to simulate experiments
@@ -357,6 +309,7 @@ export function Lab() {
     </div>
   );
 }
+*/
 
 export function ProjectGrid() {
   const { projects } = useProjects();
@@ -368,50 +321,82 @@ export function ProjectGrid() {
       case '1:1': return 'aspect-square';
       case '9:16': return 'aspect-[9/16]';
       case '3:2': return 'aspect-[3/2]';
+      case '21:9': return 'aspect-[21/9]';
       default: return 'aspect-[16/9]';
     }
   };
 
   return (
-    <div className="w-full px-6 md:px-12 pb-24">
-      <div className="columns-1 md:columns-2 lg:columns-3 gap-8">
-        {projects.map((project, idx) => (
-          <motion.div
-            key={project.id}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="break-inside-avoid mb-8"
-          >
-            <Link
-              to={`/project/${project.id}`}
-              className="relative block group overflow-hidden bg-studio-surface w-full"
+    <div className="w-full px-6 md:px-12 pb-32">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-16 md:gap-y-24 items-start">
+        {projects.map((project, idx) => {
+          const isEven = idx % 2 === 0;
+          return (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="flex flex-col"
             >
-              <div className={cn("w-full relative overflow-hidden", getAspectClass(project.aspectRatio))}>
-                <video
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105 opacity-0 group-hover:opacity-100 z-10"
-                  src={project.videoUrl}
-                />
-                <img
-                  src={project.imageUrl}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105 z-0"
-                  alt={project.title}
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-20" />
-                <div className="absolute bottom-6 right-6 text-right z-30 mix-blend-difference text-white">
-                  <p className="text-sm font-medium tracking-widest uppercase">{project.title}</p>
-                  <p className="text-[10px] opacity-60 tracking-widest uppercase mt-1">{project.category}</p>
+              <Link
+                to={`/project/${project.id}`}
+                className="group flex flex-col"
+              >
+                {/* Text Above for Even Projects (Top-Right) */}
+                {isEven && (
+                  <div className="self-end text-right max-w-[300px] mb-4 transition-transform duration-700 group-hover:-translate-y-1">
+                    <p className="text-[10px] tracking-[0.4em] text-studio-text-s uppercase font-bold mb-1">{project.category}</p>
+                    <h3 className="text-xl md:text-2xl font-display font-bold text-white leading-tight uppercase tracking-tighter mb-2">
+                      {project.title}
+                    </h3>
+                    <p className="text-[12px] text-white/50 leading-relaxed font-light line-clamp-2 mb-3">
+                      {project.description}
+                    </p>
+                    <div className="h-[1px] w-12 bg-white/20 ml-auto transition-all duration-700 group-hover:w-full" />
+                  </div>
+                )}
+
+                {/* Media Container */}
+                <div className={cn(
+                  "w-full relative overflow-hidden bg-studio-surface shadow-xl transition-all duration-700 ease-out group-hover:scale-[1.01]",
+                  getAspectClass(project.aspectRatio)
+                )}>
+                  <video
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-110 opacity-0 group-hover:opacity-100 z-10"
+                    src={getDriveDirectLink(project.videoUrl, 'video')}
+                  />
+                  <img
+                    src={getDriveDirectLink(project.imageUrl, 'image')}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-110 z-0"
+                    alt={project.title}
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-20" />
                 </div>
-              </div>
-            </Link>
-          </motion.div>
-        ))}
+
+                {/* Text Below for Odd Projects (Bottom-Left) */}
+                {!isEven && (
+                  <div className="self-start text-left max-w-[300px] mt-4 transition-transform duration-700 group-hover:translate-y-1">
+                    <p className="text-[10px] tracking-[0.4em] text-studio-text-s uppercase font-bold mb-1">{project.category}</p>
+                    <h3 className="text-xl md:text-2xl font-display font-bold text-white leading-tight uppercase tracking-tighter mb-2">
+                      {project.title}
+                    </h3>
+                    <p className="text-[12px] text-white/50 leading-relaxed font-light line-clamp-2 mb-3">
+                      {project.description}
+                    </p>
+                    <div className="h-[1px] w-12 bg-white/20 mr-auto transition-all duration-700 group-hover:w-full" />
+                  </div>
+                )}
+              </Link>
+            </motion.div>
+          );
+        })}
       </div>
     </div>
   );
@@ -773,11 +758,11 @@ export function ProjectDetail() {
             playsInline
             onError={() => setVideoError(true)}
             className="w-full h-full object-cover"
-            src={project.videoUrl}
+            src={getDriveDirectLink(project.videoUrl, 'video')}
           />
         ) : (
           <img
-            src={project.imageUrl}
+            src={getDriveDirectLink(project.imageUrl, 'image')}
             className="w-full h-full object-cover"
             alt={project.title}
           />
@@ -803,37 +788,24 @@ export function ProjectDetail() {
         </div>
       </div>
 
-      {/* Additional Media Layout */}
-      <div className="w-full px-6 md:px-12 space-y-8 pb-32">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="w-full aspect-[21/9] bg-studio-surface relative overflow-hidden"
-        >
-          <img src={project.imageUrl + '?1'} className="w-full h-full object-cover" alt="Process 1" />
-        </motion.div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {/* Additional Media Layout - Dynamic Flow */}
+      <div className="w-full px-6 md:px-12 space-y-12 md:space-y-24 pb-32">
+        {(project.galleryImages && project.galleryImages.length > 0 ? project.galleryImages : [project.imageUrl]).map((img, idx) => (
           <motion.div
+            key={idx}
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-            className="w-full aspect-[4/5] bg-studio-surface relative overflow-hidden"
+            transition={{ duration: 0.8, delay: idx * 0.1, ease: "easeOut" }}
+            className="w-full relative overflow-hidden flex justify-center"
           >
-            <img src={project.imageUrl + '?2'} className="w-full h-full object-cover" alt="Process 2" />
+            <img
+              src={getDriveDirectLink(img, 'image')}
+              className="w-full h-auto max-h-[90vh] object-contain md:object-cover rounded-sm shadow-2xl"
+              alt={`Project Detail ${idx + 1}`}
+            />
           </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="w-full aspect-[4/5] bg-studio-surface relative overflow-hidden"
-          >
-            <img src={project.imageUrl + '?3'} className="w-full h-full object-cover" alt="Process 3" />
-          </motion.div>
-        </div>
+        ))}
       </div>
 
       {/* Navigation Footer */}
@@ -984,7 +956,7 @@ export function Process() {
                 idx % 2 !== 0 && "md:flex-row-reverse md:text-right"
               )}
             >
-              <div className="text-[80px] md:text-[120px] font-display font-bold leading-none text-white/5 tracking-tighter">
+              <div className="text-[80px] md:text-[120px] font-display font-bold leading-none text-white/30 tracking-tighter hover:text-white/60 transition-colors duration-700 cursor-default">
                 {step.no}
               </div>
               <div className="space-y-6 pt-4">

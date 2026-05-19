@@ -9,6 +9,7 @@ export interface IProject extends Document {
   year: string;
   role: string;
   aspectRatio: string;
+  galleryImages: string[];
   order: number;
 }
 
@@ -21,6 +22,7 @@ const ProjectSchema: Schema = new Schema({
   year: { type: String, required: true },
   role: { type: String, required: true },
   aspectRatio: { type: String, required: true },
+  galleryImages: { type: [String], default: [] },
   order: { type: Number, default: 0 },
 }, { timestamps: true });
 

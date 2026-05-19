@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { ThemeProvider, useTheme } from './components/ThemeProvider';
 import { Navbar, Footer, CookieBanner } from './components/Common';
-import { Hero, ProjectGrid, Clients, ContactForm, AboutUs, ProjectDetail, Info, Lab, Capabilities, Process } from './components/Content';
+import { Hero, ProjectGrid, Clients, ContactForm, AboutUs, ProjectDetail, Info, /* Lab, */ Capabilities, Process } from './components/Content';
 import { OurCorePage, ServicesPage, StackPage, TermsPage, PrivacyPage } from './components/Pages';
 import { cn } from './lib/utils';
 
@@ -42,7 +42,7 @@ function AppContent() {
                   <Info />
                 </motion.div>
               } />
-              <Route path="/lab" element={
+              {/* <Route path="/lab" element={
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -51,7 +51,7 @@ function AppContent() {
                 >
                   <Lab />
                 </motion.div>
-              } />
+              } /> */}
               <Route path="/our-core" element={<OurCorePage />} />
               <Route path="/services" element={<ServicesPage />} />
               <Route path="/stack" element={<StackPage />} />
